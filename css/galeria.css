@@ -1,0 +1,422 @@
+/* =====================================
+        LS FOTOSTORY
+        GALERIA.CSS
+===================================== */
+
+
+/* ==========================
+        BANNER
+========================== */
+
+
+.galeria-banner{
+
+    height:60vh;
+
+    background:
+
+    linear-gradient(
+    rgba(0,0,0,.65),
+    rgba(0,0,0,.85)
+    ),
+
+    url("../imagens/banner-galeria.jpg");
+
+    background-size:cover;
+
+    background-position:center;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    text-align:center;
+
+}
+
+
+
+.galeria-banner h1{
+
+    font-size:65px;
+
+    letter-spacing:3px;
+
+    margin-bottom:15px;
+
+}
+
+
+
+.galeria-banner p{
+
+    color:#ddd;
+
+    font-size:20px;
+
+}
+
+
+
+
+
+/* ==========================
+        FILTROS
+========================== */
+
+
+.filtros{
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:20px;
+
+    flex-wrap:wrap;
+
+    padding:60px 8%;
+
+}
+
+
+
+.filtros button{
+
+    padding:12px 30px;
+
+    border-radius:30px;
+
+    border:none;
+
+    background:#111;
+
+    color:white;
+
+    cursor:pointer;
+
+    font-size:15px;
+
+    transition:.3s;
+
+}
+
+
+
+.filtros button:hover,
+.filtros .ativo{
+
+    background:#d4af37;
+
+    color:#000;
+
+}
+
+
+
+
+
+/* ==========================
+        GALERIA
+========================== */
+
+
+.galeria{
+
+    padding:0 8% 100px;
+
+}
+
+
+
+.galeria-grid{
+
+
+    columns:3;
+
+    column-gap:25px;
+
+
+}
+
+
+
+
+.imagem{
+
+
+    position:relative;
+
+    overflow:hidden;
+
+    border-radius:25px;
+
+    margin-bottom:25px;
+
+    break-inside:avoid;
+
+}
+
+
+
+.imagem img{
+
+
+    width:100%;
+
+    display:block;
+
+    transition:.5s;
+
+}
+
+
+
+.imagem:hover img{
+
+
+    transform:scale(1.1);
+
+}
+
+
+
+
+
+.imagem-info{
+
+
+    position:absolute;
+
+    bottom:0;
+
+    left:0;
+
+    width:100%;
+
+    padding:25px;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+
+    background:
+
+    linear-gradient(
+    transparent,
+    rgba(0,0,0,.9)
+    );
+
+
+    opacity:0;
+
+    transition:.4s;
+
+
+}
+
+
+
+.imagem:hover .imagem-info{
+
+
+    opacity:1;
+
+
+}
+
+
+
+.imagem-info h3{
+
+
+    font-size:20px;
+
+}
+
+
+
+.imagem-info a{
+
+
+    width:40px;
+
+    height:40px;
+
+    border-radius:50%;
+
+    background:#d4af37;
+
+    color:#000;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+
+}
+
+
+
+
+
+
+
+/* ==========================
+        CTA
+========================== */
+
+
+.cta{
+
+
+    margin:0 8% 100px;
+
+    padding:70px 30px;
+
+    text-align:center;
+
+    border-radius:30px;
+
+
+    background:
+
+    linear-gradient(
+
+    135deg,
+
+    rgba(212,175,55,.25),
+
+    rgba(255,255,255,.05)
+
+    );
+
+
+}
+
+
+
+.cta h2{
+
+
+    font-size:42px;
+
+    margin-bottom:20px;
+
+}
+
+
+
+.cta p{
+
+
+    color:#ddd;
+
+    margin-bottom:35px;
+
+}
+
+
+
+.cta a{
+
+
+    display:inline-block;
+
+    padding:15px 40px;
+
+    border-radius:40px;
+
+    background:#d4af37;
+
+    color:#000;
+
+    font-weight:600;
+
+
+}
+
+
+
+
+
+
+/* ==========================
+        RESPONSIVO
+========================== */
+
+
+
+@media(max-width:1000px){
+
+
+.galeria-grid{
+
+    columns:2;
+
+}
+
+
+
+.galeria-banner h1{
+
+    font-size:45px;
+
+}
+
+
+}
+
+
+
+
+@media(max-width:600px){
+
+
+.galeria-grid{
+
+    columns:1;
+
+}
+
+
+
+.filtros{
+
+    gap:10px;
+
+}
+
+
+
+.filtros button{
+
+    padding:10px 20px;
+
+}
+
+
+
+.galeria-banner h1{
+
+    font-size:35px;
+
+}
+
+
+
+.cta h2{
+
+    font-size:30px;
+
+}
+
+
+}
