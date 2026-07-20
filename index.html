@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LS Fotostory | Login</title>
+
+    <link rel="stylesheet" href="css/login.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <link rel="icon" href="imagens/logo.png">
+
+</head>
+
+<body>
+
+<div class="video-background">
+
+    <video autoplay muted loop playsinline>
+
+        <source src="videos/background.mp4" type="video/mp4">
+
+    </video>
+
+</div>
+
+<div class="overlay"></div>
+
+<header>
+
+    <div class="logo">
+
+        <img src="imagens/logo.png" alt="LS Fotostory">
+
+        <h1>LS Fotostory</h1>
+
+    </div>
+
+</header>
+
+<main>
+
+<section class="login-card">
+
+<div class="left-side">
+
+<h2>Eternizando momentos.</h2>
+
+<p>
+
+Fotografia Profissional<br>
+
+Story Maker<br>
+
+Casamentos • Ensaios • Empresas • Eventos
+
+</p>
+
+</div>
+
+<div class="right-side">
+
+<h2>Entrar</h2>
+
+<form id="loginForm">
+
+<div class="input-box">
+
+<i class="fa-solid fa-envelope"></i>
+
+<input
+type="email"
+id="email"
+placeholder="Seu e-mail"
+required>
+
+</div>
+
+<div class="input-box">
+
+<i class="fa-solid fa-lock"></i>
+
+<input
+type="password"
+id="senha"
+placeholder="Sua senha"
+required>
+
+<span class="mostrarSenha">
+
+<i class="fa-solid fa-eye"></i>
+
+</span>
+
+</div>
+
+<button
+type="submit"
+class="btnLogin">
+
+Entrar
+
+</button>
+
+<div class="linha">
+
+<span>ou</span>
+
+</div>
+
+<button
+type="button"
+id="googleLogin"
+class="google">
+
+<img src="imagens/google.png">
+
+Entrar com Google
+
+</button>
+
+<div class="links">
+
+<a href="#">
+
+Esqueci minha senha
+
+</a>
+
+<a href="#">
+
+Criar conta
+
+</a>
+
+</div>
+
+</form>
+
+</div>
+
+</section>
+
+</main>
+
+<footer>
+
+<p>
+
+© 2026 LS Fotostory
+
+</p>
+
+</footer>
+
+<script type="module" src="js/firebase.js"></script>
+
+<script type="module" src="js/login.js"></script>
+
+</body>
+
+</html>
