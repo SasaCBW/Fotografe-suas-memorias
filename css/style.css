@@ -1,0 +1,372 @@
+/* =====================================
+   LS FOTOSTORY
+   STYLE.CSS
+   Design Premium
+===================================== */
+
+
+/* RESET */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins', sans-serif;
+}
+
+
+html{
+    scroll-behavior:smooth;
+}
+
+
+body{
+
+    background:#050505;
+
+    color:white;
+
+    overflow-x:hidden;
+
+}
+
+
+
+a{
+
+    text-decoration:none;
+
+    color:white;
+
+}
+
+
+img{
+
+    max-width:100%;
+
+    display:block;
+
+}
+
+
+
+
+
+/* =====================================
+            HEADER
+===================================== */
+
+
+header{
+
+    position:fixed;
+
+    top:0;
+
+    left:0;
+
+    width:100%;
+
+    padding:25px 8%;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    z-index:1000;
+
+
+    background:rgba(0,0,0,.35);
+
+    backdrop-filter:blur(15px);
+
+}
+
+
+
+.logo{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+
+}
+
+
+
+.logo img{
+
+    width:65px;
+
+}
+
+
+
+.logo h2{
+
+    font-size:28px;
+
+    letter-spacing:2px;
+
+}
+
+
+
+
+
+nav ul{
+
+    display:flex;
+
+    gap:35px;
+
+    list-style:none;
+
+}
+
+
+
+nav ul li a{
+
+
+    font-size:15px;
+
+    transition:.3s;
+
+}
+
+
+
+nav ul li a:hover{
+
+
+    color:#d4af37;
+
+
+}
+
+
+
+
+
+.perfil{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+
+}
+
+
+
+.perfil i{
+
+    font-size:22px;
+
+}
+
+
+
+.perfil button{
+
+
+    background:#d4af37;
+
+    border:none;
+
+    padding:10px 20px;
+
+    border-radius:30px;
+
+    cursor:pointer;
+
+    font-weight:600;
+
+}
+
+
+
+
+
+/* =====================================
+            HERO
+===================================== */
+
+
+.hero{
+
+
+    height:100vh;
+
+    position:relative;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    overflow:hidden;
+
+}
+
+
+
+
+.hero video{
+
+
+    position:absolute;
+
+    width:100%;
+
+    height:100%;
+
+    object-fit:cover;
+
+    z-index:-2;
+
+
+}
+
+
+
+
+
+.hero-overlay{
+
+
+    position:absolute;
+
+    inset:0;
+
+    background:
+
+    linear-gradient(
+
+    rgba(0,0,0,.5),
+
+    rgba(0,0,0,.85)
+
+    );
+
+
+    z-index:-1;
+
+}
+
+
+
+
+
+.hero-content{
+
+
+    text-align:center;
+
+    animation:entrada 1.5s ease;
+
+
+}
+
+
+
+.hero-content h1{
+
+
+    font-size:70px;
+
+    letter-spacing:3px;
+
+    margin-bottom:20px;
+
+
+}
+
+
+
+.hero-content p{
+
+
+    font-size:22px;
+
+    color:#ddd;
+
+    margin-bottom:35px;
+
+
+}
+
+
+
+
+
+.btnHero,
+.btn{
+
+
+    display:inline-block;
+
+    padding:15px 40px;
+
+    border-radius:40px;
+
+    background:#d4af37;
+
+    color:#000;
+
+    font-weight:600;
+
+    transition:.3s;
+
+
+}
+
+
+
+.btnHero:hover,
+.btn:hover{
+
+
+    transform:scale(1.05);
+
+    background:#fff;
+
+
+}
+
+
+
+
+
+
+
+@keyframes entrada{
+
+
+from{
+
+opacity:0;
+
+transform:translateY(40px);
+
+}
+
+
+to{
+
+opacity:1;
+
+transform:translateY(0);
+
+}
+
+
+}
