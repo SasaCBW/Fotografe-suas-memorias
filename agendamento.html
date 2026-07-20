@@ -31,17 +31,17 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
 </head>
 
 
-
 <body>
 
+
+<!-- MENU -->
 
 <header>
 
 
 <div class="logo">
 
-
-<img src="imagens/logo.png">
+<img src="imagens/logo.png" alt="LS Fotostory">
 
 
 <h2>
@@ -54,7 +54,6 @@ LS Fotostory
 
 
 <nav>
-
 
 <ul>
 
@@ -95,7 +94,6 @@ Contato
 
 </ul>
 
-
 </nav>
 
 
@@ -105,11 +103,13 @@ Contato
 
 
 
+<!-- BANNER -->
+
+
 <section class="agendamento-banner">
 
 
 <div>
-
 
 <h1>
 Vamos criar sua história?
@@ -117,7 +117,7 @@ Vamos criar sua história?
 
 
 <p>
-Agende uma conversa com a Sarah.
+Agende uma reunião com a Sarah.
 </p>
 
 
@@ -131,6 +131,8 @@ Agende uma conversa com a Sarah.
 
 
 
+<!-- FORMULÁRIO -->
+
 
 <section class="form-area">
 
@@ -138,16 +140,15 @@ Agende uma conversa com a Sarah.
 <div class="form-box">
 
 
-
 <h2>
 Agendar reunião
 </h2>
 
 
-
 <p>
-Preencha os dados abaixo e entraremos em contato.
+Preencha os dados abaixo e entraremos em contato para conversar sobre seu evento.
 </p>
+
 
 
 
@@ -208,12 +209,11 @@ E-mail
 <input 
 type="email"
 id="email"
-placeholder="Seu melhor e-mail"
+placeholder="Digite seu e-mail"
 required>
 
 
 </div>
-
 
 
 
@@ -227,12 +227,11 @@ Tipo de evento
 </label>
 
 
+<select id="evento" required>
 
-<select id="evento">
 
-
-<option>
-Selecione
+<option value="">
+Selecione uma opção
 </option>
 
 
@@ -247,12 +246,17 @@ Aniversário
 
 
 <option>
-Ensaio
+Ensaio fotográfico
 </option>
 
 
 <option>
 Evento empresarial
+</option>
+
+
+<option>
+Festa
 </option>
 
 
@@ -294,11 +298,12 @@ required>
 
 
 
+
 <div class="campo">
 
 
 <label>
-Horário
+Horário desejado
 </label>
 
 
@@ -328,9 +333,13 @@ Mensagem
 
 
 <textarea
+
 id="mensagem"
+
 rows="5"
-placeholder="Conte um pouco sobre seu evento..."
+
+placeholder="Conte detalhes sobre seu evento..."
+
 ></textarea>
 
 
@@ -340,18 +349,16 @@ placeholder="Conte um pouco sobre seu evento..."
 
 
 
-
 <button type="submit">
 
-
 Enviar solicitação
-
 
 </button>
 
 
 
 </form>
+
 
 
 </div>
@@ -364,9 +371,16 @@ Enviar solicitação
 
 
 
+
+<!-- WHATSAPP -->
+
+
 <a 
+
 href="https://wa.me/5542988620679"
+
 class="whatsapp"
+
 target="_blank">
 
 
@@ -380,12 +394,15 @@ target="_blank">
 
 
 
+<!-- RODAPÉ -->
+
+
 <footer>
 
 
 <p>
 
-© 2026 LS Fotostory
+© 2026 LS Fotostory - Todos os direitos reservados.
 
 </p>
 
@@ -396,9 +413,48 @@ target="_blank">
 
 
 
-<script type="module" src="js/agendamento.js"></script>
+
+
+<!-- EMAILJS -->
+
+
+<script 
+src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
+</script>
+
+
+
+<script>
+
+(function(){
+
+emailjs.init({
+
+publicKey:"SUA_PUBLIC_KEY"
+
+});
+
+})();
+
+
+</script>
+
+
+
+
+
+
+<!-- FIREBASE + AGENDAMENTO -->
+
+
+<script 
+type="module"
+src="js/agendamento.js">
+</script>
+
 
 
 </body>
+
 
 </html>
