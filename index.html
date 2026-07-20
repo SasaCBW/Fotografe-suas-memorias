@@ -1,37 +1,28 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LS Fotostory | Login</title>
 
-    <link rel="stylesheet" href="css/login.css">
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>LS Fotostory | Início</title>
+
+    <link rel="stylesheet" href="css/style.css">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
+
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
     <link rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-
-    <link rel="icon" href="imagens/logo.png">
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
 </head>
 
 <body>
-
-<div class="video-background">
-
-    <video autoplay muted loop playsinline>
-
-        <source src="videos/background.mp4" type="video/mp4">
-
-    </video>
-
-</div>
-
-<div class="overlay"></div>
 
 <header>
 
@@ -39,131 +30,152 @@
 
         <img src="imagens/logo.png" alt="LS Fotostory">
 
-        <h1>LS Fotostory</h1>
+        <h2>LS Fotostory</h2>
+
+    </div>
+
+    <nav>
+
+        <ul>
+
+            <li><a href="#">Início</a></li>
+
+            <li><a href="galeria.html">Galeria</a></li>
+
+            <li><a href="videos.html">Vídeos</a></li>
+
+            <li><a href="agendamento.html">Agendar</a></li>
+
+            <li><a href="contato.html">Contato</a></li>
+
+        </ul>
+
+    </nav>
+
+    <div class="perfil">
+
+        <i class="fa-solid fa-user"></i>
+
+        <button onclick="sair()">
+
+            Sair
+
+        </button>
 
     </div>
 
 </header>
 
-<main>
+<section class="hero">
 
-<section class="login-card">
+    <video autoplay muted loop playsinline>
 
-<div class="left-side">
+        <source src="videos/banner.mp4" type="video/mp4">
 
-<h2>Eternizando momentos.</h2>
+    </video>
 
-<p>
+    <div class="hero-overlay"></div>
 
-Fotografia Profissional<br>
+    <div class="hero-content">
 
-Story Maker<br>
+        <h1>
 
-Casamentos • Ensaios • Empresas • Eventos
+            Eternizando Momentos
 
-</p>
+        </h1>
 
-</div>
+        <p>
 
-<div class="right-side">
+            Fotografia Profissional • Story Maker
 
-<h2>Entrar</h2>
+        </p>
 
-<form id="loginForm">
+        <a href="galeria.html" class="btnHero">
 
-<div class="input-box">
+            Ver Galeria
 
-<i class="fa-solid fa-envelope"></i>
+        </a>
 
-<input
-type="email"
-id="email"
-placeholder="Seu e-mail"
-required>
-
-</div>
-
-<div class="input-box">
-
-<i class="fa-solid fa-lock"></i>
-
-<input
-type="password"
-id="senha"
-placeholder="Sua senha"
-required>
-
-<span class="mostrarSenha">
-
-<i class="fa-solid fa-eye"></i>
-
-</span>
-
-</div>
-
-<button
-type="submit"
-class="btnLogin">
-
-Entrar
-
-</button>
-
-<div class="linha">
-
-<span>ou</span>
-
-</div>
-
-<button
-type="button"
-id="googleLogin"
-class="google">
-
-<img src="imagens/google.png">
-
-Entrar com Google
-
-</button>
-
-<div class="links">
-
-<a href="#">
-
-Esqueci minha senha
-
-</a>
-
-<a href="#">
-
-Criar conta
-
-</a>
-
-</div>
-
-</form>
-
-</div>
+    </div>
 
 </section>
 
-</main>
+<section class="servicos">
 
-<footer>
+    <h2>
 
-<p>
+        Nossos Serviços
 
-© 2026 LS Fotostory
+    </h2>
 
-</p>
+    <div class="cards">
 
-</footer>
+        <div class="card">
 
-<script type="module" src="js/firebase.js"></script>
+            <i class="fa-solid fa-camera"></i>
 
-<script type="module" src="js/login.js"></script>
+            <h3>Fotografia</h3>
 
-</body>
+            <p>
 
-</html>
+                Ensaios, aniversários, casamentos e eventos.
+
+            </p>
+
+        </div>
+
+        <div class="card">
+
+            <i class="fa-solid fa-video"></i>
+
+            <h3>Story Maker</h3>
+
+            <p>
+
+                Cobertura completa para Instagram.
+
+            </p>
+
+        </div>
+
+        <div class="card">
+
+            <i class="fa-solid fa-heart"></i>
+
+            <h3>Momentos Especiais</h3>
+
+            <p>
+
+                Registrando memórias inesquecíveis.
+
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+<section class="destaques">
+
+    <h2>
+
+        Destaques
+
+    </h2>
+
+    <div class="carousel">
+
+        <img src="imagens/festa1.jpg">
+
+        <img src="imagens/casamento.jpg">
+
+        <img src="imagens/paisagem.jpg">
+
+        <img src="imagens/food.jpg">
+
+        <img src="imagens/aniversario.jpg">
+
+    </div>
+
+</section>
