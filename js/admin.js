@@ -2,8 +2,10 @@ import { auth, storage, db } from "./firebase.js";
 
 
 import {
+
 onAuthStateChanged,
 signOut
+
 }
 from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
@@ -11,8 +13,7 @@ from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 import {
 
 ref,
-uploadBytes,
-getDownloadURL
+uploadBytes
 
 }
 from "https://www.gstatic.com/firebasejs/10.12.2/firebase-storage.js";
@@ -23,7 +24,9 @@ import {
 collection,
 addDoc,
 serverTimestamp,
-getDocs
+getDocs,
+doc,
+updateDoc
 
 }
 from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
@@ -48,6 +51,7 @@ window.location.href="admin-login.html";
 
 
 
+
 // SAIR
 
 
@@ -63,6 +67,77 @@ window.location.href="login.html";
 
 
 });
+
+
+
+
+
+// CARREGAR CLIENTES
+
+
+async function carregarClientes(){
+
+
+const select =
+document.getElementById("clienteFotos");
+
+
+const area =
+document.getElementById("clientes");
+
+
+select.innerHTML =
+"<option>Selecione o cliente</option>";
+
+
+
+area.innerHTML="";
+
+
+
+const clientes =
+await getDocs(collection(db,"clientes"));
+
+
+
+clientes.forEach((item)=>{
+
+
+const cliente =
+item.data();
+
+
+
+select.innerHTML += `
+
+<option value="${item.id}">
+${cliente.nome}
+</option>
+
+`;
+
+
+
+area.innerHTML += `
+
+<div class="cliente-card">
+
+<h3>${cliente.nome}</h3>
+
+<p>${cliente.email}</p>
+
+</div>
+
+`;
+
+});
+
+
+}
+
+
+carregarClientes();
+
 
 
 
@@ -117,78 +192,6 @@ carregarClientes();
 
 
 
-// LISTAR CLIENTES
-
-
-async function carregarClientes(){
-
-
-const select =
-document.getElementById("clienteFotos");
-
-
-const area =
-document.getElementById("clientes");
-
-
-
-select.innerHTML =
-"<option>Selecione o cliente</option>";
-
-
-
-area.innerHTML="";
-
-
-
-const dados =
-await getDocs(collection(db,"clientes"));
-
-
-
-dados.forEach((doc)=>{
-
-
-const cliente =
-doc.data();
-
-
-
-select.innerHTML += `
-
-<option value="${doc.id}">
-${cliente.nome}
-</option>
-
-`;
-
-
-
-area.innerHTML += `
-
-<div class="cliente-card">
-
-<h3>${cliente.nome}</h3>
-
-<p>${cliente.email}</p>
-
-</div>
-
-`;
-
-});
-
-
-}
-
-
-carregarClientes();
-
-
-
-
-
-
 // ENVIAR FOTOS
 
 
@@ -197,9 +200,8 @@ document
 .addEventListener("click",async()=>{
 
 
-const clienteID =
+const cliente =
 document.getElementById("clienteFotos").value;
-
 
 
 const arquivos =
@@ -207,29 +209,17 @@ document.getElementById("fotos").files;
 
 
 
-if(!clienteID){
-
-alert("Selecione um cliente.");
-
-return;
-
-}
-
-
-
-
 for(let foto of arquivos){
 
 
-
-const caminho = ref(
+const caminho =
+ref(
 
 storage,
 
-"fotos/"+clienteID+"/"+foto.name
+"fotos/"+cliente+"/"+foto.name
 
 );
-
 
 
 
@@ -242,41 +232,164 @@ foto
 );
 
 
-
-
-const url =
-await getDownloadURL(caminho);
+}
 
 
 
+document.getElementById("status").innerHTML =
+"Fotos enviadas! 📸";
 
 
-await addDoc(
+});
 
-collection(db,"fotos"),
+
+
+
+
+
+
+
+// AGENDAMENTOS
+
+
+async function carregarAgendamentos(){
+
+
+const area =
+document.getElementById("agendamentos");
+
+
+area.innerHTML="";
+
+
+
+const dados =
+await getDocs(
+
+collection(db,"agendamentos")
+
+);
+
+
+
+dados.forEach((item)=>{
+
+
+const agendamento =
+item.data();
+
+
+
+area.innerHTML += `
+
+<div class="cliente-card">
+
+
+<h3>${agendamento.nome}</h3>
+
+
+<p>
+Evento: ${agendamento.evento}
+</p>
+
+
+<p>
+Data: ${agendamento.data}
+</p>
+
+
+<p>
+WhatsApp: ${agendamento.telefone}
+</p>
+
+
+<p>
+Status:
+${agendamento.status}
+</p>
+
+
+<button onclick="confirmar('${item.id}')">
+
+Confirmar
+
+</button>
+
+
+<button onclick="recusar('${item.id}')">
+
+Recusar
+
+</button>
+
+
+</div>
+
+`;
+
+});
+
+
+}
+
+
+
+carregarAgendamentos();
+
+
+
+
+
+
+// CONFIRMAR
+
+
+window.confirmar = async(id)=>{
+
+
+await updateDoc(
+
+doc(db,"agendamentos",id),
 
 {
 
-clienteID:clienteID,
-
-nome:foto.name,
-
-url:url,
-
-criadoEm:serverTimestamp()
+status:"Confirmado"
 
 }
 
 );
 
 
+carregarAgendamentos();
+
+
+};
+
+
+
+
+
+
+// RECUSAR
+
+
+window.recusar = async(id)=>{
+
+
+await updateDoc(
+
+doc(db,"agendamentos",id),
+
+{
+
+status:"Recusado"
 
 }
 
+);
 
 
-document.getElementById("status").innerHTML =
-"Fotos enviadas com sucesso! 📸";
+carregarAgendamentos();
 
 
-});
+};
