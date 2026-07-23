@@ -18,66 +18,53 @@
 
 <header>
 
-<div class="logo">
+<h1>📸 LS.fotostory</h1>
 
-<h1>LS<span>.fotostory</span></h1>
-
-</div>
-
-
-<nav>
-
-<a href="index.html">Início</a>
-<a href="galeria.html">Galeria</a>
-<a href="agendamento.html">Agendamento</a>
-<a href="contato.html">Contato</a>
-
-</nav>
+<a href="login.html">
+<button>
+Área do cliente
+</button>
+</a>
 
 </header>
 
 
 
-<section class="pagina">
+
+<main class="painel">
+
+
+<section>
 
 
 <h2>
-Agende seu momento
+Solicite seu orçamento
 </h2>
 
 
-<p>
-Preencha as informações abaixo e entraremos em contato
-para confirmar a disponibilidade.
-</p>
-
-
-
-<div class="formulario">
-
-
-<form id="agendaForm">
-
 
 <input 
-type="text" 
+type="text"
 id="nome"
-placeholder="Nome completo"
-required>
-
+placeholder="Seu nome">
 
 
 <input 
 type="tel"
 id="telefone"
-placeholder="Telefone / WhatsApp"
-required>
+placeholder="WhatsApp">
+
+
+<input 
+type="email"
+id="email"
+placeholder="Seu e-mail">
 
 
 
-<select id="evento" required>
+<select id="evento">
 
-<option value="">
+<option>
 Escolha o tipo de evento
 </option>
 
@@ -94,17 +81,12 @@ Festa Junina
 </option>
 
 <option>
-Ensaio fotográfico
-</option>
-
-<option>
-Evento empresarial
+Ensaio Fotográfico
 </option>
 
 <option>
 Outro
 </option>
-
 
 </select>
 
@@ -113,55 +95,37 @@ Outro
 
 <input 
 type="date"
-id="data"
-required>
-
-
-
-<input 
-type="time"
-id="horario"
-required>
-
+id="data">
 
 
 
 <textarea
 id="mensagem"
-placeholder="Conte mais detalhes sobre seu evento">
+placeholder="Conte mais detalhes do evento">
 </textarea>
 
 
 
-<button type="submit">
+<button id="enviarAgendamento">
 
 Enviar solicitação
 
 </button>
 
 
-</form>
 
+<p id="resultado"></p>
 
-</div>
 
 
 </section>
 
 
-
-
-<footer>
-
-<p>
-© 2026 LS.fotostory - Fotografia Profissional
-</p>
-
-</footer>
+</main>
 
 
 
-<script src="js/script.js"></script>
+<script type="module" src="js/agendamento.js"></script>
 
 
 </body>
