@@ -4,10 +4,11 @@
 <head>
 
     <meta charset="UTF-8">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>LS Fotostory | Início</title>
+    <title>LS Fotostory | Fotografia & Story Maker</title>
+
+    <link rel="icon" href="imagens/logo.png">
 
     <link rel="stylesheet" href="css/style.css">
 
@@ -15,14 +16,18 @@
 
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
     <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.0/css/all.min.css">
 
 </head>
 
 <body>
+
+<!-- ===========================
+MENU
+=========================== -->
 
 <header>
 
@@ -38,93 +43,227 @@
 
         <ul>
 
-            <li><a href="#">Início</a></li>
+            <li><a href="#inicio">Início</a></li>
+
+            <li><a href="#sobre">Sobre</a></li>
 
             <li><a href="galeria.html">Galeria</a></li>
 
-            <li><a href="videos.html">Vídeos</a></li>
+            <li><a href="videos.html">Story Maker</a></li>
 
             <li><a href="agendamento.html">Agendar</a></li>
 
             <li><a href="contato.html">Contato</a></li>
 
+            <li>
+
+                <a class="btn-login" href="login.html">
+
+                    Área do Cliente
+
+                </a>
+
+            </li>
+
         </ul>
 
     </nav>
 
-    <div class="perfil">
-
-        <i class="fa-solid fa-user"></i>
-
-        <button onclick="sair()">
-
-            Sair
-
-        </button>
-
-    </div>
-
 </header>
 
-<section class="hero">
+<!-- ===========================
+HERO
+=========================== -->
+
+<section class="hero" id="inicio">
 
     <video autoplay muted loop playsinline>
 
-        <source src="videos/banner.mp4" type="video/mp4">
+        <source src="videos/background.mp4" type="video/mp4">
 
     </video>
 
-    <div class="hero-overlay"></div>
+    <div class="overlay"></div>
 
-    <div class="hero-content">
+    <div class="hero-conteudo">
 
         <h1>
 
-            Eternizando Momentos
+            Transformando Momentos
+            <br>
+            em Memórias Eternas
 
         </h1>
 
         <p>
 
-            Fotografia Profissional • Story Maker
+            Fotografia profissional, Story Maker,
+            cobertura de eventos,
+            ensaios, casamentos,
+            aniversários e muito mais.
 
         </p>
 
-        <a href="galeria.html" class="btnHero">
+        <div class="botoes">
 
-            Ver Galeria
+            <a href="agendamento.html" class="botao-dourado">
 
-        </a>
+                Agendar Reunião
+
+            </a>
+
+            <a href="galeria.html" class="botao-transparente">
+
+                Ver Portfólio
+
+            </a>
+
+        </div>
 
     </div>
 
 </section>
 
+<!-- ===========================
+ESTATÍSTICAS
+=========================== -->
+
+<section class="estatisticas">
+
+    <div class="card">
+
+        <h2>+250</h2>
+
+        <p>Eventos registrados</p>
+
+    </div>
+
+    <div class="card">
+
+        <h2>+80 mil</h2>
+
+        <p>Fotos entregues</p>
+
+    </div>
+
+    <div class="card">
+
+        <h2>98%</h2>
+
+        <p>Clientes satisfeitos</p>
+
+    </div>
+
+    <div class="card">
+
+        <h2>100%</h2>
+
+        <p>Dedicação em cada detalhe</p>
+
+    </div>
+
+</section>
+
+<!-- ===========================
+SOBRE
+=========================== -->
+
+<section class="sobre" id="sobre">
+
+    <div class="texto">
+
+        <span>Quem Somos</span>
+
+        <h2>
+
+            Cada fotografia conta uma história.
+
+        </h2>
+
+        <p>
+
+            A LS Fotostory nasceu para registrar
+            momentos únicos com criatividade,
+            emoção e qualidade profissional.
+
+            Trabalhamos com fotografia,
+            filmagem e Story Maker,
+            buscando eternizar cada detalhe do seu evento.
+
+        </p>
+
+        <ul>
+
+            <li>
+                <i class="fa-solid fa-check"></i>
+
+                Fotografia Profissional
+            </li>
+
+            <li>
+                <i class="fa-solid fa-check"></i>
+
+                Story Maker
+            </li>
+
+            <li>
+                <i class="fa-solid fa-check"></i>
+
+                Cobertura de Eventos
+            </li>
+
+            <li>
+                <i class="fa-solid fa-check"></i>
+
+                Entrega Digital
+            </li>
+
+        </ul>
+
+    </div>
+
+    <div class="imagem">
+
+        <img src="imagens/sobre.jpg" alt="Fotografia">
+
+    </div>
+
+</section>
+
+<!-- ===========================
+SERVIÇOS
+=========================== -->
+
 <section class="servicos">
 
-    <h2>
+    <h2>Nossos Serviços</h2>
 
-        Nossos Serviços
+    <p>
 
-    </h2>
+        Muito mais do que fotografias.
 
-    <div class="cards">
+    </p>
 
-        <div class="card">
+    <div class="grid-servicos">
 
-            <i class="fa-solid fa-camera"></i>
+        <div class="servico">
+
+            <i class="fa-solid fa-camera-retro"></i>
 
             <h3>Fotografia</h3>
 
             <p>
 
-                Ensaios, aniversários, casamentos e eventos.
+                Ensaios, aniversários,
+                casamentos,
+                eventos corporativos
+                e muito mais.
 
             </p>
 
         </div>
 
-        <div class="card">
+        <div class="servico">
 
             <i class="fa-solid fa-video"></i>
 
@@ -132,7 +271,172 @@
 
             <p>
 
-                Cobertura completa para Instagram.
+                Cobertura completa para
+                Instagram,
+                Reels
+                e redes sociais.
+
+            </p>
+
+        </div>
+
+        <div class="servico">
+
+            <i class="fa-solid fa-images"></i>
+
+            <h3>Galeria Online</h3>
+
+            <p>
+
+                Seus convidados poderão
+                acessar as fotos
+                através da área exclusiva.
+
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+<!-- ===========================
+PORTFÓLIO
+=========================== -->
+
+<section class="portfolio">
+
+    <div class="titulo">
+
+        <span>Portfólio</span>
+
+        <h2>Alguns momentos registrados</h2>
+
+        <p>
+            Cada fotografia representa uma história única. Confira alguns exemplos
+            do nosso trabalho.
+        </p>
+
+    </div>
+
+    <div class="portfolio-grid">
+
+        <div class="item">
+
+            <img src="imagens/casamento.jpg" alt="Casamento">
+
+            <div class="overlay">
+
+                <h3>Casamentos</h3>
+
+            </div>
+
+        </div>
+
+        <div class="item">
+
+            <img src="imagens/aniversario.jpg" alt="Aniversário">
+
+            <div class="overlay">
+
+                <h3>Aniversários</h3>
+
+            </div>
+
+        </div>
+
+        <div class="item">
+
+            <img src="imagens/ensaio.jpg" alt="Ensaio">
+
+            <div class="overlay">
+
+                <h3>Ensaios</h3>
+
+            </div>
+
+        </div>
+
+        <div class="item">
+
+            <img src="imagens/paisagem.jpg" alt="Paisagem">
+
+            <div class="overlay">
+
+                <h3>Paisagens</h3>
+
+            </div>
+
+        </div>
+
+        <div class="item">
+
+            <img src="imagens/gastronomia.jpg" alt="Gastronomia">
+
+            <div class="overlay">
+
+                <h3>Gastronomia</h3>
+
+            </div>
+
+        </div>
+
+        <div class="item">
+
+            <img src="imagens/evento.jpg" alt="Evento">
+
+            <div class="overlay">
+
+                <h3>Eventos</h3>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ===========================
+POR QUE ESCOLHER
+=========================== -->
+
+<section class="diferenciais">
+
+    <div class="titulo">
+
+        <span>Diferenciais</span>
+
+        <h2>Por que escolher a LS Fotostory?</h2>
+
+    </div>
+
+    <div class="cards">
+
+        <div class="card">
+
+            <i class="fa-solid fa-camera"></i>
+
+            <h3>Equipamentos Profissionais</h3>
+
+            <p>
+
+                Trabalhamos com equipamentos modernos
+                para garantir máxima qualidade.
+
+            </p>
+
+        </div>
+
+        <div class="card">
+
+            <i class="fa-solid fa-bolt"></i>
+
+            <h3>Entrega Rápida</h3>
+
+            <p>
+
+                Organização e rapidez na entrega das fotos
+                e vídeos.
 
             </p>
 
@@ -142,11 +446,27 @@
 
             <i class="fa-solid fa-heart"></i>
 
-            <h3>Momentos Especiais</h3>
+            <h3>Atendimento Humanizado</h3>
 
             <p>
 
-                Registrando memórias inesquecíveis.
+                Cada cliente recebe um atendimento exclusivo
+                e personalizado.
+
+            </p>
+
+        </div>
+
+        <div class="card">
+
+            <i class="fa-solid fa-cloud-arrow-down"></i>
+
+            <h3>Galeria Online</h3>
+
+            <p>
+
+                Seus arquivos ficam disponíveis em uma
+                área exclusiva para download.
 
             </p>
 
@@ -156,526 +476,85 @@
 
 </section>
 
-<section class="destaques">
-
-    <h2>
-
-        Destaques
-
-    </h2>
-
-    <div class="carousel">
-
-        <img src="imagens/festa1.jpg">
-
-        <img src="imagens/casamento.jpg">
-
-        <img src="imagens/paisagem.jpg">
-
-        <img src="imagens/food.jpg">
-
-        <img src="imagens/aniversario.jpg">
-
-    </div>
-
-</section>
-
-    <!-- =========================
-     GALERIA DE DESTAQUES
-========================= -->
-
-<section class="galeria-preview">
-
-    <div class="titulo-secao">
-
-        <h2>
-            Alguns momentos registrados
-        </h2>
-
-        <p>
-            Histórias, emoções e detalhes eternizados pela LS Fotostory.
-        </p>
-
-    </div>
-
-
-    <div class="grid-fotos">
-
-
-        <div class="foto-card">
-
-            <img src="imagens/festa.jpg" alt="Festa">
-
-            <div class="foto-overlay">
-
-                <h3>
-                    Eventos
-                </h3>
-
-            </div>
-
-        </div>
-
-
-        <div class="foto-card">
-
-            <img src="imagens/casamento.jpg" alt="Casamento">
-
-            <div class="foto-overlay">
-
-                <h3>
-                    Casamentos
-                </h3>
-
-            </div>
-
-        </div>
-
-
-        <div class="foto-card">
-
-            <img src="imagens/ensaio.jpg" alt="Ensaio">
-
-            <div class="foto-overlay">
-
-                <h3>
-                    Ensaios
-                </h3>
-
-            </div>
-
-        </div>
-
-
-        <div class="foto-card">
-
-            <img src="imagens/food.jpg" alt="Food">
-
-            <div class="foto-overlay">
-
-                <h3>
-                    Gastronomia
-                </h3>
-
-            </div>
-
-        </div>
-
-
-    </div>
-
-
-    <a href="galeria.html" class="btn">
-
-        Ver todas as fotos
-
-    </a>
-
-
-</section>
-
-
-
-<!-- =========================
-     VÍDEOS
-========================= -->
-
-
-<section class="videos-home">
-
-
-    <div class="titulo-secao">
-
-
-        <h2>
-
-            Story Maker
-
-        </h2>
-
-
-        <p>
-
-            Vídeos que transformam momentos em histórias.
-
-        </p>
-
-
-    </div>
-
-
-
-    <div class="video-container">
-
-
-        <video autoplay muted loop playsinline>
-
-
-            <source src="videos/story.mp4" type="video/mp4">
-
-
-        </video>
-
-
-
-        <div class="video-text">
-
-
-            <h2>
-
-                Cada detalhe importa.
-
-            </h2>
-
-
-            <p>
-
-                Capturamos emoções reais para você reviver sempre.
-
-            </p>
-
-
-        </div>
-
-
-    </div>
-
-
-</section>
-
-
-
-
-
-<!-- =========================
-     AGENDAMENTO
-========================= -->
-
-
-<section class="agendamento-home">
-
-
-<div class="agendamento-box">
-
-
-<h2>
-
-Vamos registrar sua história?
-
-</h2>
-
-
-<p>
-
-Agende uma reunião com a Sarah e transforme seu evento em uma memória inesquecível.
-
-</p>
-
-
-
-<a href="agendamento.html" class="btn">
-
-Marcar reunião
-
-</a>
-
-
-
-</div>
-
-
-</section>
-<!-- =========================
-     DEPOIMENTOS
-========================= -->
+<!-- ===========================
+DEPOIMENTOS
+=========================== -->
 
 <section class="depoimentos">
 
-    <div class="titulo-secao">
+    <div class="titulo">
 
-        <h2>
-            O que nossos clientes dizem
-        </h2>
+        <span>Avaliações</span>
 
-        <p>
-            Momentos especiais registrados com carinho.
-        </p>
+        <h2>O que nossos clientes dizem</h2>
 
     </div>
 
+    <div class="cards-depoimentos">
 
-    <div class="depoimentos-container">
-
-
-        <div class="depoimento-card">
+        <div class="depoimento">
 
             <i class="fa-solid fa-quote-left"></i>
 
             <p>
-                O trabalho da LS Fotostory foi incrível. 
-                Cada detalhe da nossa festa foi registrado de uma forma única.
+
+                Atendimento incrível e fotos maravilhosas.
+                Superou todas as expectativas!
+
             </p>
 
-            <h3>
-                Cliente LS
-            </h3>
+            <h4>Cliente</h4>
+
+            <div class="estrelas">
+
+                ⭐⭐⭐⭐⭐
+
+            </div>
 
         </div>
 
-
-
-        <div class="depoimento-card">
+        <div class="depoimento">
 
             <i class="fa-solid fa-quote-left"></i>
 
             <p>
-                Fotos lindas, atendimento maravilhoso e muita dedicação.
-                Recomendo muito!
+
+                Muito profissional.
+                Recebemos tudo antes do prazo.
+
             </p>
 
-            <h3>
-                Cliente LS
-            </h3>
+            <h4>Cliente</h4>
+
+            <div class="estrelas">
+
+                ⭐⭐⭐⭐⭐
+
+            </div>
 
         </div>
 
-
-
-        <div class="depoimento-card">
+        <div class="depoimento">
 
             <i class="fa-solid fa-quote-left"></i>
 
             <p>
-                Conseguiram transformar momentos simples em lembranças eternas.
+
+                O Story Maker ficou perfeito.
+                Recomendo demais!
+
             </p>
 
-            <h3>
-                Cliente LS
-            </h3>
+            <h4>Cliente</h4>
+
+            <div class="estrelas">
+
+                ⭐⭐⭐⭐⭐
+
+            </div>
 
         </div>
-
 
     </div>
 
-
 </section>
-
-
-
-<!-- =========================
-     INSTAGRAM
-========================= -->
-
-
-<section class="instagram">
-
-
-<div class="instagram-box">
-
-
-<i class="fa-brands fa-instagram"></i>
-
-
-<h2>
-    Acompanhe nosso trabalho
-</h2>
-
-
-<p>
-    Veja mais fotos, vídeos e bastidores no nosso Instagram.
-</p>
-
-
-<a 
-href="https://instagram.com/ls.fotostory"
-target="_blank">
-
-@ls.fotostory
-
-</a>
-
-
-</div>
-
-
-</section>
-
-
-
-
-
-<!-- =========================
-     WHATSAPP
-========================= -->
-
-
-<a 
-href="https://wa.me/5542988620679"
-class="whatsapp"
-target="_blank">
-
-
-<i class="fa-brands fa-whatsapp"></i>
-
-
-</a>
-
-
-
-
-
-<!-- =========================
-     RODAPÉ
-========================= -->
-
-
-<footer>
-
-
-<div class="footer-content">
-
-
-<div>
-
-
-<h2>
-LS Fotostory
-</h2>
-
-
-<p>
-Fotografia profissional e Story Maker.
-</p>
-
-
-</div>
-
-
-
-<div>
-
-
-<h3>
-Contato
-</h3>
-
-
-<p>
-Sarah
-</p>
-
-
-<p>
-WhatsApp:
-(42) 98862-0679
-</p>
-
-
-</div>
-
-
-
-<div>
-
-
-<h3>
-Redes Sociais
-</h3>
-
-
-<a href="https://instagram.com/ls.fotostory">
-
-Instagram
-
-</a>
-
-
-</div>
-
-
-</div>
-
-
-
-
-<div class="copyright">
-
-
-<p>
-
-© 2026 LS Fotostory - Todos os direitos reservados.
-
-</p>
-
-
-</div>
-
-
-
-</footer>
-
-
-
-
-
-<!-- =========================
-     SCRIPTS
-========================= -->
-
-
-<script type="module">
-
-import {
-
-auth
-
-} from "./js/firebase.js";
-
-import {
-
-signOut
-
-} from 
-"https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
-
-
-
-window.sair = function(){
-
-
-signOut(auth)
-
-.then(()=>{
-
-
-window.location.href="index.html";
-
-
-})
-
-
-.catch(error=>{
-
-
-console.log(error);
-
-
-});
-
-
-}
-
-
-
-</script>
-
-
-
-<script src="js/carousel.js"></script>
-
-
-
-</body>
-
-</html>
