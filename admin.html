@@ -1,6 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Painel | LS.fotostory</title>
+
+<link rel="stylesheet" href="css/style.css">
+
+</head>
+
+
+<body>
+
+
+<header>
+
+<h1>📸 Painel LS.fotostory</h1>
+
+<button id="sair">
+Sair
+</button>
+
+</header>
+
+
+
+
+<main class="painel">
+
+
+
 <section>
 
-<h2>📷 Enviar fotos para cliente</h2>
+<h2>👤 Criar cliente</h2>
+
+
+<input 
+type="text"
+id="nomeCliente"
+placeholder="Nome do cliente">
+
+
+<input 
+type="email"
+id="emailCliente"
+placeholder="E-mail do cliente">
+
+
+<button id="criarCliente">
+Criar cliente
+</button>
+
+
+<p id="clienteStatus"></p>
+
+
+</section>
+
+
+
+
+
+
+<section>
+
+<h2>📷 Enviar fotos</h2>
 
 
 <select id="clienteFotos">
@@ -27,3 +94,56 @@ Enviar fotos
 
 
 </section>
+
+
+
+
+
+
+<section>
+
+<h2>📂 Clientes cadastrados</h2>
+
+
+<div id="clientes">
+
+Carregando...
+
+</div>
+
+
+</section>
+
+
+
+
+
+
+<section>
+
+<h2>📅 Agendamentos recebidos</h2>
+
+
+<div id="agendamentos">
+
+Carregando...
+
+</div>
+
+
+</section>
+
+
+
+
+</main>
+
+
+
+
+<script type="module" src="js/admin.js"></script>
+
+
+</body>
+
+</html>
