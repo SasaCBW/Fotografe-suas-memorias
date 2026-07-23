@@ -1,160 +1,157 @@
-// ==========================================
+// ========================================
 // LS FOTOSTORY
 // LOGIN.JS
-// Desenvolvido por ChatGPT
-// ==========================================
+// ========================================
 
 import {
-    auth,
-    provider
+    auth
 } from "./firebase.js";
 
 import {
+
     signInWithEmailAndPassword,
+
+    GoogleAuthProvider,
+
     signInWithPopup,
-    onAuthStateChanged,
-    sendPasswordResetEmail,
-    signOut
+
+    createUserWithEmailAndPassword,
+
+    sendPasswordResetEmail
+
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
-// ==============================
-// Elementos
-// ==============================
 
-const form = document.getElementById("loginForm");
+// ========================================
+// LOGIN
+// ========================================
 
-const email = document.getElementById("email");
+const btnEntrar = document.getElementById("btnEntrar");
 
-const senha = document.getElementById("senha");
+if(btnEntrar){
 
-const googleLogin = document.getElementById("googleLogin");
+btnEntrar.addEventListener("click", async()=>{
 
-// ==============================
-// Verificar Login
-// ==============================
+const email = document.getElementById("email").value;
 
-onAuthStateChanged(auth, (user)=>{
+const senha = document.getElementById("senha").value;
 
-    if(user){
+try{
 
-        window.location.href="inicio.html";
+await signInWithEmailAndPassword(auth,email,senha);
 
-    }
+window.location="cliente.html";
 
-});
+}
 
-// ==============================
-// Login por E-mail
-// ==============================
+catch(error){
 
-form.addEventListener("submit", async(e)=>{
+alert("E-mail ou senha inválidos.");
 
-    e.preventDefault();
-
-    try{
-
-        await signInWithEmailAndPassword(
-
-            auth,
-
-            email.value,
-
-            senha.value
-
-        );
-
-        alert("Login realizado com sucesso!");
-
-        window.location.href="inicio.html";
-
-    }
-
-    catch(error){
-
-        console.log(error);
-
-        alert("E-mail ou senha incorretos.");
-
-    }
+}
 
 });
 
-// ==============================
-// Login Google
-// ==============================
+}
 
-googleLogin.addEventListener("click", async()=>{
 
-    try{
 
-        await signInWithPopup(
+// ========================================
+// LOGIN GOOGLE
+// ========================================
 
-            auth,
+const btnGoogle = document.getElementById("btnGoogle");
 
-            provider
+if(btnGoogle){
 
-        );
+btnGoogle.addEventListener("click", async()=>{
 
-        window.location.href="inicio.html";
+const provider = new GoogleAuthProvider();
 
-    }
+try{
 
-    catch(error){
+await signInWithPopup(auth,provider);
 
-        console.log(error);
+window.location="cliente.html";
 
-        alert("Erro ao entrar com Google.");
+}
 
-    }
+catch(error){
+
+alert("Erro ao entrar com Google.");
+
+}
 
 });
 
-// ==============================
-// Recuperar Senha
-// ==============================
+}
 
-window.recuperarSenha = async()=>{
 
-    if(email.value===""){
 
-        alert("Digite seu e-mail primeiro.");
+// ========================================
+// CADASTRO
+// ========================================
 
-        return;
+const btnCadastrar = document.getElementById("btnCadastrar");
 
-    }
+if(btnCadastrar){
 
-    try{
+btnCadastrar.addEventListener("click", async()=>{
 
-        await sendPasswordResetEmail(
+const email = document.getElementById("emailCadastro").value;
 
-            auth,
+const senha = document.getElementById("senhaCadastro").value;
 
-            email.value
+try{
 
-        );
+await createUserWithEmailAndPassword(auth,email,senha);
 
-        alert("Enviamos um e-mail para redefinir sua senha.");
+alert("Conta criada com sucesso!");
 
-    }
+window.location="cliente.html";
 
-    catch(error){
+}
 
-        console.log(error);
+catch(error){
 
-        alert("Não foi possível enviar o e-mail.");
+alert(error.message);
 
-    }
+}
 
-};
+});
 
-// ==============================
-// Logout
-// ==============================
+}
 
-window.sair = async()=>{
 
-    await signOut(auth);
 
-    window.location.href="index.html";
+// ========================================
+// ESQUECI SENHA
+// ========================================
 
-};
+const btnEsqueci = document.getElementById("btnEsqueci");
+
+if(btnEsqueci){
+
+btnEsqueci.addEventListener("click", async()=>{
+
+const email = prompt("Digite seu e-mail:");
+
+if(!email) return;
+
+try{
+
+await sendPasswordResetEmail(auth,email);
+
+alert("Foi enviado um link para redefinir sua senha.");
+
+}
+
+catch(error){
+
+alert("Erro ao enviar e-mail.");
+
+}
+
+});
+
+}
