@@ -1,116 +1,139 @@
-// ==========================================
-// LS FOTOSTORY
-// CLIENTE.JS
-// ==========================================
-
 import { auth, db } from "./firebase.js";
 
-import {
-    onAuthStateChanged,
-    signOut
-} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
 import {
-    collection,
-    getDocs,
-    query,
-    where
-} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+onAuthStateChanged,
+signOut
+
+}
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
 
-// ================================
-// VERIFICAR LOGIN
-// ================================
+import {
+
+collection,
+query,
+where,
+getDocs
+
+}
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+
+
+
+// Verificar usuário logado
+
 
 onAuthStateChanged(auth, async(user)=>{
 
-    if(!user){
 
-        window.location="login.html";
+if(!user){
 
-        return;
 
-    }
+window.location.href="login.html";
 
-    document.getElementById("nomeCliente").innerHTML=user.displayName || user.email;
 
-    carregarFotos(user.email);
+return;
+
+}
+
+
+
+buscarCliente(user.email);
+
+
 
 });
 
 
-// ================================
-// CARREGAR FOTOS
-// ================================
 
-async function carregarFotos(email){
 
-    const galeria=document.getElementById("galeriaCliente");
 
-    galeria.innerHTML="";
+// Buscar cliente
 
-    const q=query(
 
-        collection(db,"galerias"),
+async function buscarCliente(email){
 
-        where("cliente","==",email)
 
-    );
+const clientes = await getDocs(
 
-    const snapshot=await getDocs(q);
+query(
 
-    if(snapshot.empty){
+collection(db,"clientes"),
 
-        galeria.innerHTML=`
+where(
+"email",
+"==",
+email
+)
 
-        <div class="semFotos">
+)
 
-            <h2>Nenhuma foto disponível.</h2>
+);
 
-            <p>
-            Assim que a LS Fotostory liberar sua galeria,
-            ela aparecerá aqui.
-            </p>
 
-        </div>
 
-        `;
 
-        return;
+const area =
+document.getElementById("galeria");
 
-    }
 
-    snapshot.forEach((doc)=>{
 
-        const foto=doc.data();
+if(clientes.empty){
 
-        galeria.innerHTML+=`
 
-        <div class="foto-cliente">
+document.getElementById("nomeCliente").innerHTML =
+"Cliente não encontrado.";
 
-            <img src="${foto.imagem}">
 
-            <a href="${foto.imagem}" download>
+area.innerHTML =
+"Nenhuma galeria disponível.";
 
-                Baixar Foto
 
-            </a>
-
-        </div>
-
-        `;
-
-    });
+return;
 
 }
 
 
-// ================================
-// LOGOUT
-// ================================
 
-window.logout=()=>{
+clientes.forEach((doc)=>{
 
-    signOut(auth);
+
+const cliente =
+doc.data();
+
+
+
+document.getElementById("nomeCliente").innerHTML =
+"Olá, "+cliente.nome+"! 📸";
+
+
+
+});
+
+
 
 }
+
+
+
+
+
+
+// Logout
+
+
+document
+.getElementById("sair")
+.addEventListener("click",()=>{
+
+
+signOut(auth);
+
+
+window.location.href="login.html";
+
+
+});
