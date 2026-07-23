@@ -1,133 +1,151 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Agendamento | LS.fotostory</title>
 
-<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="style.css">
 
 </head>
 
-
 <body>
 
-
-<header>
-
-<h1>📸 LS.fotostory</h1>
-
-<a href="login.html">
-<button>
-Área do cliente
-</button>
-</a>
-
+<header class="topo">
+    <h1>LS.fotostory</h1>
+    <p>Agende seu momento especial</p>
 </header>
 
 
+<section class="agendamento">
+
+<div class="titulo">
+    <h2>Solicite seu orçamento</h2>
+
+    <p>
+    Conte para nós sobre seu evento e vamos criar uma experiência
+    única para transformar seus momentos em histórias.
+    </p>
+</div>
 
 
-<main class="painel">
+<form id="formAgendamento">
 
 
-<section>
+<label>Nome completo</label>
+<input type="text" id="nome" placeholder="Digite seu nome" required>
 
 
-<h2>
-Solicite seu orçamento
-</h2>
+<label>WhatsApp</label>
+<input type="tel" id="telefone" placeholder="(42) 99999-9999" required>
 
 
-
-<input 
-type="text"
-id="nome"
-placeholder="Seu nome">
-
-
-<input 
-type="tel"
-id="telefone"
-placeholder="WhatsApp">
-
-
-<input 
-type="email"
-id="email"
-placeholder="Seu e-mail">
-
-
+<label>Tipo de evento</label>
 
 <select id="evento">
 
-<option>
-Escolha o tipo de evento
-</option>
-
-<option>
-Casamento
-</option>
-
-<option>
-Aniversário
-</option>
-
-<option>
-Festa Junina
-</option>
-
-<option>
-Ensaio Fotográfico
-</option>
-
-<option>
-Outro
-</option>
+<option>Selecione uma opção</option>
+<option>Casamento</option>
+<option>Aniversário</option>
+<option>Festa Infantil</option>
+<option>Ensaio Fotográfico</option>
+<option>Evento Empresarial</option>
+<option>Outro</option>
 
 </select>
 
 
+<label>Data do evento</label>
+<input type="date" id="data">
 
 
-<input 
-type="date"
-id="data">
+<label>Local do evento</label>
+<input type="text" id="local" placeholder="Cidade ou endereço">
 
 
+<label>Conte mais detalhes</label>
 
-<textarea
-id="mensagem"
-placeholder="Conte mais detalhes do evento">
-</textarea>
-
+<textarea id="mensagem" 
+placeholder="Conte como imagina seu evento..."></textarea>
 
 
-<button id="enviarAgendamento">
-
+<button type="submit">
 Enviar solicitação
-
 </button>
 
 
+</form>
 
-<p id="resultado"></p>
 
+<div class="whatsapp-box">
+
+<h3>Prefere falar diretamente?</h3>
+
+<p>
+Nossa equipe está pronta para atender você.
+</p>
+
+
+<a 
+href="https://wa.me/5542988620679?text=Olá!%20Vim%20pelo%20site%20da%20LS.fotostory%20e%20gostaria%20de%20solicitar%20um%20orçamento."
+target="_blank">
+
+💬 Conversar pelo WhatsApp
+
+</a>
+
+
+</div>
 
 
 </section>
 
 
-</main>
+
+<script>
+
+document.getElementById("formAgendamento")
+.addEventListener("submit", function(e){
+
+e.preventDefault();
 
 
+let nome=document.getElementById("nome").value;
+let evento=document.getElementById("evento").value;
+let data=document.getElementById("data").value;
+let local=document.getElementById("local").value;
+let mensagem=document.getElementById("mensagem").value;
 
-<script type="module" src="js/agendamento.js"></script>
+
+let texto=
+`Olá! Vim pelo site da LS.fotostory.
+
+Nome: ${nome}
+
+Evento: ${evento}
+
+Data: ${data}
+
+Local: ${local}
+
+Detalhes:
+${mensagem}`;
+
+
+let url=
+"https://wa.me/5542988620679?text="
++encodeURIComponent(texto);
+
+
+window.open(url,"_blank");
+
+
+});
+
+
+</script>
 
 
 </body>
-
 </html>
