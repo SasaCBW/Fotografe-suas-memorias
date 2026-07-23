@@ -36,7 +36,6 @@ from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 // VERIFICAR ADMIN
 
-
 onAuthStateChanged(auth,(user)=>{
 
 
@@ -46,8 +45,8 @@ window.location.href="admin-login.html";
 
 }
 
-});
 
+});
 
 
 
@@ -72,7 +71,9 @@ window.location.href="login.html";
 
 
 
-// CARREGAR CLIENTES
+
+
+// CLIENTES
 
 
 async function carregarClientes(){
@@ -143,7 +144,6 @@ carregarClientes();
 
 
 
-
 // CRIAR CLIENTE
 
 
@@ -191,8 +191,7 @@ carregarClientes();
 
 
 
-
-// ENVIAR FOTOS
+// UPLOAD FOTOS
 
 
 document
@@ -237,7 +236,7 @@ foto
 
 
 document.getElementById("status").innerHTML =
-"Fotos enviadas! 📸";
+"Fotos enviadas com sucesso! 📸";
 
 
 });
@@ -299,7 +298,8 @@ Data: ${agendamento.data}
 
 
 <p>
-WhatsApp: ${agendamento.telefone}
+WhatsApp:
+${agendamento.telefone}
 </p>
 
 
@@ -309,18 +309,34 @@ ${agendamento.status}
 </p>
 
 
-<button onclick="confirmar('${item.id}')">
 
-Confirmar
+<button onclick="whatsapp('${agendamento.telefone}',
+'${agendamento.nome}',
+'${agendamento.evento}',
+'${agendamento.data}')">
+
+📲 WhatsApp
 
 </button>
+
+
+
+
+<button onclick="confirmar('${item.id}')">
+
+✅ Confirmar
+
+</button>
+
+
 
 
 <button onclick="recusar('${item.id}')">
 
-Recusar
+❌ Recusar
 
 </button>
+
 
 
 </div>
@@ -335,6 +351,53 @@ Recusar
 
 
 carregarAgendamentos();
+
+
+
+
+
+
+
+// ABRIR WHATSAPP
+
+
+window.whatsapp = function(
+telefone,
+nome,
+evento,
+data
+){
+
+
+
+const mensagem =
+
+`Olá ${nome}! 😊
+
+Aqui é da LS.fotostory 📸
+
+Recebemos sua solicitação para ${evento} no dia ${data}.
+
+Vamos conversar sobre os detalhes?`;
+
+
+
+const numero =
+telefone.replace(/\D/g,'');
+
+
+
+window.open(
+
+"https://wa.me/"+numero+
+"?text="+encodeURIComponent(mensagem)
+
+);
+
+
+};
+
+
 
 
 
@@ -360,10 +423,13 @@ status:"Confirmado"
 );
 
 
+
 carregarAgendamentos();
 
 
 };
+
+
 
 
 
@@ -387,6 +453,7 @@ status:"Recusado"
 }
 
 );
+
 
 
 carregarAgendamentos();
