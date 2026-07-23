@@ -26,7 +26,8 @@ addDoc,
 serverTimestamp,
 getDocs,
 doc,
-updateDoc
+updateDoc,
+query
 
 }
 from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
@@ -34,7 +35,20 @@ from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 
 
+// ===============================
+// EMAILJS
+// ===============================
+
+
+emailjs.init("SUA_PUBLIC_KEY");
+
+
+
+
+// ===============================
 // VERIFICAR ADMIN
+// ===============================
+
 
 onAuthStateChanged(auth,(user)=>{
 
@@ -51,7 +65,10 @@ window.location.href="admin-login.html";
 
 
 
+
+// ===============================
 // SAIR
+// ===============================
 
 
 document
@@ -72,8 +89,9 @@ window.location.href="login.html";
 
 
 
-
+// ===============================
 // CLIENTES
+// ===============================
 
 
 async function carregarClientes(){
@@ -87,6 +105,7 @@ const area =
 document.getElementById("clientes");
 
 
+
 select.innerHTML =
 "<option>Selecione o cliente</option>";
 
@@ -97,7 +116,11 @@ area.innerHTML="";
 
 
 const clientes =
-await getDocs(collection(db,"clientes"));
+await getDocs(
+
+collection(db,"clientes")
+
+);
 
 
 
@@ -137,6 +160,7 @@ area.innerHTML += `
 }
 
 
+
 carregarClientes();
 
 
@@ -144,7 +168,11 @@ carregarClientes();
 
 
 
+
+
+// ===============================
 // CRIAR CLIENTE
+// ===============================
 
 
 document
@@ -158,6 +186,7 @@ document.getElementById("nomeCliente").value;
 
 const email =
 document.getElementById("emailCliente").value;
+
 
 
 
@@ -179,7 +208,8 @@ criadoEm:serverTimestamp()
 
 
 
-alert("Cliente criado!");
+alert("Cliente criado com sucesso!");
+
 
 carregarClientes();
 
@@ -191,7 +221,11 @@ carregarClientes();
 
 
 
-// UPLOAD FOTOS
+
+
+// ===============================
+// UPLOAD DE FOTOS
+// ===============================
 
 
 document
@@ -236,7 +270,7 @@ foto
 
 
 document.getElementById("status").innerHTML =
-"Fotos enviadas com sucesso! 📸";
+"Fotos enviadas! 📸";
 
 
 });
@@ -248,7 +282,9 @@ document.getElementById("status").innerHTML =
 
 
 
-// AGENDAMENTOS
+// ===============================
+// MOSTRAR AGENDAMENTOS
+// ===============================
 
 
 async function carregarAgendamentos(){
@@ -284,7 +320,9 @@ area.innerHTML += `
 <div class="cliente-card">
 
 
-<h3>${agendamento.nome}</h3>
+<h3>
+${agendamento.nome}
+</h3>
 
 
 <p>
@@ -310,18 +348,6 @@ ${agendamento.status}
 
 
 
-<button onclick="whatsapp('${agendamento.telefone}',
-'${agendamento.nome}',
-'${agendamento.evento}',
-'${agendamento.data}')">
-
-📲 WhatsApp
-
-</button>
-
-
-
-
 <button onclick="confirmar('${item.id}')">
 
 ✅ Confirmar
@@ -329,11 +355,17 @@ ${agendamento.status}
 </button>
 
 
-
-
 <button onclick="recusar('${item.id}')">
 
 ❌ Recusar
+
+</button>
+
+
+
+<button onclick="whatsapp('${agendamento.telefone}')">
+
+📲 WhatsApp
 
 </button>
 
@@ -358,56 +390,46 @@ carregarAgendamentos();
 
 
 
-// ABRIR WHATSAPP
 
 
-window.whatsapp = function(
-telefone,
-nome,
-evento,
-data
-){
+// ===============================
+// CONFIRMAR + EMAIL
+// ===============================
 
 
-
-const mensagem =
-
-`Olá ${nome}! 😊
-
-Aqui é da LS.fotostory 📸
-
-Recebemos sua solicitação para ${evento} no dia ${data}.
-
-Vamos conversar sobre os detalhes?`;
+window.confirmar = async(id)=>{
 
 
+const consulta = await getDocs(
 
-const numero =
-telefone.replace(/\D/g,'');
+query(
 
+collection(db,"agendamentos")
 
-
-window.open(
-
-"https://wa.me/"+numero+
-"?text="+encodeURIComponent(mensagem)
+)
 
 );
 
 
-};
+
+let cliente;
 
 
 
+consulta.forEach((item)=>{
+
+
+if(item.id === id){
+
+cliente = item.data();
+
+}
+
+
+});
 
 
 
-
-
-// CONFIRMAR
-
-
-window.confirmar = async(id)=>{
 
 
 await updateDoc(
@@ -419,6 +441,41 @@ doc(db,"agendamentos",id),
 status:"Confirmado"
 
 }
+
+);
+
+
+
+
+
+
+emailjs.send(
+
+"SERVICE_ID",
+
+"TEMPLATE_ID",
+
+{
+
+nome_cliente:cliente.nome,
+
+email_cliente:cliente.email,
+
+evento:cliente.evento,
+
+data_evento:cliente.data
+
+}
+
+);
+
+
+
+
+
+alert(
+
+"Agendamento confirmado! E-mail enviado 📧"
 
 );
 
@@ -436,7 +493,9 @@ carregarAgendamentos();
 
 
 
+// ===============================
 // RECUSAR
+// ===============================
 
 
 window.recusar = async(id)=>{
@@ -457,6 +516,34 @@ status:"Recusado"
 
 
 carregarAgendamentos();
+
+
+};
+
+
+
+
+
+
+
+// ===============================
+// WHATSAPP
+// ===============================
+
+
+window.whatsapp = function(numero){
+
+
+numero =
+numero.replace(/\D/g,'');
+
+
+
+window.open(
+
+"https://wa.me/"+numero
+
+);
 
 
 };
