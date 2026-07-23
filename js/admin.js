@@ -1,5 +1,5 @@
-// Firebase
 import { auth, storage, db } from "./firebase.js";
+
 
 import {
 onAuthStateChanged,
@@ -11,8 +11,7 @@ from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 import {
 
 ref,
-uploadBytes,
-getDownloadURL
+uploadBytes
 
 }
 from "https://www.gstatic.com/firebasejs/10.12.2/firebase-storage.js";
@@ -31,9 +30,8 @@ from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 
 
-// ==============================
-// VERIFICAR ADMIN LOGADO
-// ==============================
+
+// VERIFICAR LOGIN ADMIN
 
 
 onAuthStateChanged(auth,(user)=>{
@@ -51,9 +49,8 @@ window.location.href="admin-login.html";
 
 
 
-// ==============================
-// SAIR DO PAINEL
-// ==============================
+
+// SAIR
 
 
 document
@@ -73,9 +70,8 @@ window.location.href="login.html";
 
 
 
-// ==============================
-// CRIAR CLIENTE
-// ==============================
+
+// CADASTRAR CLIENTE
 
 
 document
@@ -92,24 +88,10 @@ document.getElementById("emailCliente").value;
 
 
 
-if(!nome || !email){
-
-
-document.getElementById("clienteStatus").innerHTML =
-"Preencha todos os campos.";
-
-
-return;
-
-}
-
-
-
-try{
-
-
 await addDoc(
+
 collection(db,"clientes"),
+
 {
 
 nome:nome,
@@ -124,32 +106,10 @@ criadoEm:serverTimestamp()
 
 
 
-document.getElementById("clienteStatus").innerHTML =
-"Cliente cadastrado com sucesso! 📸";
-
-
-
-document.getElementById("nomeCliente").value="";
-
-document.getElementById("emailCliente").value="";
+alert("Cliente criado com sucesso!");
 
 
 carregarClientes();
-
-
-}
-
-catch(error){
-
-
-console.log(error);
-
-
-document.getElementById("clienteStatus").innerHTML =
-"Erro ao cadastrar cliente.";
-
-
-}
 
 
 });
@@ -158,41 +118,38 @@ document.getElementById("clienteStatus").innerHTML =
 
 
 
-// ==============================
-// MOSTRAR CLIENTES
-// ==============================
+
+
+// CARREGAR CLIENTES
 
 
 async function carregarClientes(){
+
+
+const select =
+document.getElementById("clienteFotos");
 
 
 const area =
 document.getElementById("clientes");
 
 
+
+select.innerHTML =
+"<option>Selecione o cliente</option>";
+
+
+
 area.innerHTML="";
 
 
-const consulta =
+
+const clientes =
 await getDocs(collection(db,"clientes"));
 
 
 
-if(consulta.empty){
-
-
-area.innerHTML =
-"Nenhum cliente cadastrado.";
-
-
-return;
-
-
-}
-
-
-
-consulta.forEach((doc)=>{
+clientes.forEach((doc)=>{
 
 
 const cliente =
@@ -200,9 +157,19 @@ doc.data();
 
 
 
+select.innerHTML += `
+
+<option value="${cliente.nome}">
+${cliente.nome}
+</option>
+
+`;
+
+
+
 area.innerHTML += `
 
-<div class="cliente-card">
+<div>
 
 <h3>${cliente.nome}</h3>
 
@@ -228,9 +195,7 @@ carregarClientes();
 
 
 
-// ==============================
 // ENVIAR FOTOS
-// ==============================
 
 
 document
@@ -238,17 +203,19 @@ document
 .addEventListener("click",async()=>{
 
 
+const cliente =
+document.getElementById("clienteFotos").value;
+
+
+
 const arquivos =
 document.getElementById("fotos").files;
 
 
 
-if(arquivos.length === 0){
+if(cliente==="Selecione o cliente"){
 
-
-document.getElementById("status").innerHTML =
-"Selecione as fotos primeiro.";
-
+alert("Escolha um cliente.");
 
 return;
 
@@ -256,23 +223,28 @@ return;
 
 
 
-try{
-
-
 for(let foto of arquivos){
 
 
-const localFoto =
+
+const caminho =
+
 ref(
+
 storage,
-"fotos/"+foto.name
+
+"fotos/"+cliente+"/"+foto.name
+
 );
 
 
 
 await uploadBytes(
-localFoto,
+
+caminho,
+
 foto
+
 );
 
 
@@ -282,24 +254,7 @@ foto
 
 
 document.getElementById("status").innerHTML =
-"Fotos enviadas com sucesso! 📸";
-
-
-}
-
-
-catch(error){
-
-
-console.log(error);
-
-
-document.getElementById("status").innerHTML =
-"Erro ao enviar fotos.";
-
-
-}
-
+"Fotos enviadas para "+cliente+" 📸";
 
 
 });
