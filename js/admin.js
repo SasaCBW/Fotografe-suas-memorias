@@ -11,7 +11,8 @@ from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 import {
 
 ref,
-uploadBytes
+uploadBytes,
+getDownloadURL
 
 }
 from "https://www.gstatic.com/firebasejs/10.12.2/firebase-storage.js";
@@ -30,8 +31,7 @@ from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 
 
-
-// VERIFICAR LOGIN ADMIN
+// VERIFICAR ADMIN
 
 
 onAuthStateChanged(auth,(user)=>{
@@ -43,9 +43,7 @@ window.location.href="admin-login.html";
 
 }
 
-
 });
-
 
 
 
@@ -71,7 +69,7 @@ window.location.href="login.html";
 
 
 
-// CADASTRAR CLIENTE
+// CRIAR CLIENTE
 
 
 document
@@ -106,8 +104,7 @@ criadoEm:serverTimestamp()
 
 
 
-alert("Cliente criado com sucesso!");
-
+alert("Cliente criado!");
 
 carregarClientes();
 
@@ -120,7 +117,7 @@ carregarClientes();
 
 
 
-// CARREGAR CLIENTES
+// LISTAR CLIENTES
 
 
 async function carregarClientes(){
@@ -144,12 +141,12 @@ area.innerHTML="";
 
 
 
-const clientes =
+const dados =
 await getDocs(collection(db,"clientes"));
 
 
 
-clientes.forEach((doc)=>{
+dados.forEach((doc)=>{
 
 
 const cliente =
@@ -159,7 +156,7 @@ doc.data();
 
 select.innerHTML += `
 
-<option value="${cliente.nome}">
+<option value="${doc.id}">
 ${cliente.nome}
 </option>
 
@@ -169,7 +166,7 @@ ${cliente.nome}
 
 area.innerHTML += `
 
-<div>
+<div class="cliente-card">
 
 <h3>${cliente.nome}</h3>
 
@@ -179,16 +176,13 @@ area.innerHTML += `
 
 `;
 
-
 });
 
 
 }
 
 
-
 carregarClientes();
-
 
 
 
@@ -203,7 +197,7 @@ document
 .addEventListener("click",async()=>{
 
 
-const cliente =
+const clienteID =
 document.getElementById("clienteFotos").value;
 
 
@@ -213,9 +207,9 @@ document.getElementById("fotos").files;
 
 
 
-if(cliente==="Selecione o cliente"){
+if(!clienteID){
 
-alert("Escolha um cliente.");
+alert("Selecione um cliente.");
 
 return;
 
@@ -223,19 +217,19 @@ return;
 
 
 
+
 for(let foto of arquivos){
 
 
 
-const caminho =
-
-ref(
+const caminho = ref(
 
 storage,
 
-"fotos/"+cliente+"/"+foto.name
+"fotos/"+clienteID+"/"+foto.name
 
 );
+
 
 
 
@@ -249,12 +243,40 @@ foto
 
 
 
+
+const url =
+await getDownloadURL(caminho);
+
+
+
+
+
+await addDoc(
+
+collection(db,"fotos"),
+
+{
+
+clienteID:clienteID,
+
+nome:foto.name,
+
+url:url,
+
+criadoEm:serverTimestamp()
+
+}
+
+);
+
+
+
 }
 
 
 
 document.getElementById("status").innerHTML =
-"Fotos enviadas para "+cliente+" 📸";
+"Fotos enviadas com sucesso! 📸";
 
 
 });
