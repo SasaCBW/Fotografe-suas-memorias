@@ -23,17 +23,13 @@ from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 
 
-// Verificar usuário logado
 
-
-onAuthStateChanged(auth, async(user)=>{
+onAuthStateChanged(auth,async(user)=>{
 
 
 if(!user){
 
-
 window.location.href="login.html";
-
 
 return;
 
@@ -41,7 +37,7 @@ return;
 
 
 
-buscarCliente(user.email);
+buscarFotos(user.email);
 
 
 
@@ -51,13 +47,14 @@ buscarCliente(user.email);
 
 
 
-// Buscar cliente
 
 
-async function buscarCliente(email){
+async function buscarFotos(email){
 
 
-const clientes = await getDocs(
+
+const clientes =
+await getDocs(
 
 query(
 
@@ -76,21 +73,10 @@ email
 
 
 
-const area =
-document.getElementById("galeria");
-
-
-
 if(clientes.empty){
 
-
-document.getElementById("nomeCliente").innerHTML =
-"Cliente não encontrado.";
-
-
-area.innerHTML =
-"Nenhuma galeria disponível.";
-
+document.getElementById("galeria").innerHTML =
+"Nenhuma galeria encontrada.";
 
 return;
 
@@ -98,17 +84,78 @@ return;
 
 
 
+let clienteID;
+
+
+
 clientes.forEach((doc)=>{
 
 
-const cliente =
+clienteID = doc.id;
+
+
+document.getElementById("nomeCliente").innerHTML =
+"Bem-vindo à sua galeria 📸";
+
+
+});
+
+
+
+
+
+
+const fotos =
+await getDocs(
+
+query(
+
+collection(db,"fotos"),
+
+where(
+"clienteID",
+"==",
+clienteID
+)
+
+)
+
+);
+
+
+
+
+const galeria =
+document.getElementById("galeria");
+
+
+galeria.innerHTML="";
+
+
+
+fotos.forEach((doc)=>{
+
+
+const foto =
 doc.data();
 
 
 
-document.getElementById("nomeCliente").innerHTML =
-"Olá, "+cliente.nome+"! 📸";
+galeria.innerHTML += `
 
+<div class="foto">
+
+<img src="${foto.url}">
+
+<br>
+
+<a href="${foto.url}" download>
+Baixar foto
+</a>
+
+</div>
+
+`;
 
 
 });
@@ -119,10 +166,6 @@ document.getElementById("nomeCliente").innerHTML =
 
 
 
-
-
-
-// Logout
 
 
 document
