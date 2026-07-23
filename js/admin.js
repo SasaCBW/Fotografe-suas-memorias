@@ -2,25 +2,20 @@ import { auth, storage, db } from "./firebase.js";
 
 
 import {
-
 onAuthStateChanged,
 signOut
-
 }
 from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
 
 import {
-
 ref,
 uploadBytes
-
 }
 from "https://www.gstatic.com/firebasejs/10.12.2/firebase-storage.js";
 
 
 import {
-
 collection,
 addDoc,
 serverTimestamp,
@@ -28,7 +23,6 @@ getDocs,
 doc,
 updateDoc,
 query
-
 }
 from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
@@ -36,17 +30,16 @@ from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 
 // ===============================
-// EMAILJS
+// EMAILJS CONFIGURAÇÃO
 // ===============================
 
-
-emailjs.init("SUA_PUBLIC_KEY");
+emailjs.init("JINbfjQI6mEutRhPn");
 
 
 
 
 // ===============================
-// VERIFICAR ADMIN
+// VERIFICAR ADMIN LOGADO
 // ===============================
 
 
@@ -67,7 +60,7 @@ window.location.href="admin-login.html";
 
 
 // ===============================
-// SAIR
+// SAIR DO PAINEL
 // ===============================
 
 
@@ -89,8 +82,10 @@ window.location.href="login.html";
 
 
 
+
+
 // ===============================
-// CLIENTES
+// CARREGAR CLIENTES
 // ===============================
 
 
@@ -111,7 +106,7 @@ select.innerHTML =
 
 
 
-area.innerHTML="";
+area.innerHTML = "";
 
 
 
@@ -189,7 +184,6 @@ document.getElementById("emailCliente").value;
 
 
 
-
 await addDoc(
 
 collection(db,"clientes"),
@@ -224,7 +218,7 @@ carregarClientes();
 
 
 // ===============================
-// UPLOAD DE FOTOS
+// ENVIAR FOTOS
 // ===============================
 
 
@@ -242,10 +236,21 @@ document.getElementById("fotos").files;
 
 
 
+if(!cliente){
+
+alert("Selecione um cliente.");
+
+return;
+
+}
+
+
+
 for(let foto of arquivos){
 
 
 const caminho =
+
 ref(
 
 storage,
@@ -270,10 +275,12 @@ foto
 
 
 document.getElementById("status").innerHTML =
-"Fotos enviadas! 📸";
+
+"Fotos enviadas com sucesso! 📸";
 
 
 });
+
 
 
 
@@ -294,11 +301,12 @@ const area =
 document.getElementById("agendamentos");
 
 
-area.innerHTML="";
+area.innerHTML = "";
 
 
 
 const dados =
+
 await getDocs(
 
 collection(db,"agendamentos")
@@ -342,6 +350,12 @@ ${agendamento.telefone}
 
 
 <p>
+E-mail:
+${agendamento.email}
+</p>
+
+
+<p>
 Status:
 ${agendamento.status}
 </p>
@@ -353,6 +367,7 @@ ${agendamento.status}
 ✅ Confirmar
 
 </button>
+
 
 
 <button onclick="recusar('${item.id}')">
@@ -392,8 +407,9 @@ carregarAgendamentos();
 
 
 
+
 // ===============================
-// CONFIRMAR + EMAIL
+// CONFIRMAR AGENDAMENTO + EMAIL
 // ===============================
 
 
@@ -412,7 +428,7 @@ collection(db,"agendamentos")
 
 
 
-let cliente;
+let cliente = null;
 
 
 
@@ -427,6 +443,18 @@ cliente = item.data();
 
 
 });
+
+
+
+
+if(!cliente){
+
+alert("Agendamento não encontrado.");
+
+return;
+
+}
+
 
 
 
@@ -449,25 +477,54 @@ status:"Confirmado"
 
 
 
+
 emailjs.send(
 
-"SERVICE_ID",
+"service_ennfe4n",
 
-"TEMPLATE_ID",
+"template_hp6pouu",
 
 {
 
-nome_cliente:cliente.nome,
 
-email_cliente:cliente.email,
+nome_cliente: cliente.nome,
 
-evento:cliente.evento,
 
-data_evento:cliente.data
+email_cliente: cliente.email,
+
+
+evento: cliente.evento,
+
+
+data_evento: cliente.data
+
 
 }
 
+
+)
+
+.then(()=>{
+
+
+console.log("E-mail enviado com sucesso!");
+
+
+
+})
+
+.catch((erro)=>{
+
+
+console.log(
+"Erro ao enviar e-mail:",
+erro
 );
+
+
+
+});
+
 
 
 
@@ -475,13 +532,14 @@ data_evento:cliente.data
 
 alert(
 
-"Agendamento confirmado! E-mail enviado 📧"
+"Agendamento confirmado e e-mail enviado! 📧"
 
 );
 
 
 
 carregarAgendamentos();
+
 
 
 };
@@ -493,8 +551,9 @@ carregarAgendamentos();
 
 
 
+
 // ===============================
-// RECUSAR
+// RECUSAR AGENDAMENTO
 // ===============================
 
 
@@ -518,6 +577,7 @@ status:"Recusado"
 carregarAgendamentos();
 
 
+
 };
 
 
@@ -526,12 +586,15 @@ carregarAgendamentos();
 
 
 
+
+
 // ===============================
-// WHATSAPP
+// ABRIR WHATSAPP
 // ===============================
 
 
 window.whatsapp = function(numero){
+
 
 
 numero =
@@ -544,6 +607,7 @@ window.open(
 "https://wa.me/"+numero
 
 );
+
 
 
 };
