@@ -1,75 +1,15 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-
-<head>
-
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Painel Administrativo | LS.fotostory</title>
-
-<link rel="stylesheet" href="css/style.css">
-
-</head>
-
-
-<body>
-
-
-<header>
-
-<h1>📸 Painel LS.fotostory</h1>
-
-<button id="sair">
-Sair
-</button>
-
-</header>
-
-
-
-<main class="painel">
-
-
-
-<!-- Cadastro de clientes -->
-
 <section>
 
-<h2>👤 Criar cliente</h2>
+<h2>📷 Enviar fotos para cliente</h2>
 
 
-<input 
-type="text"
-id="nomeCliente"
-placeholder="Nome do cliente">
+<select id="clienteFotos">
 
+<option>
+Selecione o cliente
+</option>
 
-<input 
-type="email"
-id="emailCliente"
-placeholder="E-mail do cliente">
-
-
-<button id="criarCliente">
-Criar cliente
-</button>
-
-
-<p id="clienteStatus"></p>
-
-
-</section>
-
-
-
-
-
-<!-- Upload de fotos -->
-
-<section>
-
-<h2>📷 Enviar fotos</h2>
+</select>
 
 
 <input 
@@ -87,57 +27,3 @@ Enviar fotos
 
 
 </section>
-
-
-
-
-
-<!-- Lista de clientes -->
-
-<section>
-
-<h2>📂 Clientes cadastrados</h2>
-
-
-<div id="clientes">
-
-Nenhum cliente cadastrado.
-
-</div>
-
-
-</section>
-
-
-
-
-
-<!-- Agendamentos -->
-
-<section>
-
-<h2>📅 Agendamentos</h2>
-
-
-<div id="agendamentos">
-
-Nenhum agendamento encontrado.
-
-</div>
-
-
-</section>
-
-
-
-</main>
-
-
-
-
-<script type="module" src="js/admin.js"></script>
-
-
-</body>
-
-</html>
