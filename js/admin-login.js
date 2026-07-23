@@ -1,19 +1,16 @@
 import { auth } from "./firebase.js";
 
-
 import {
 signInWithEmailAndPassword
 }
 from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
 
-
-// E-mails autorizados
+// Usuários autorizados do painel
 
 const administradores = [
 
-"SEU_EMAIL_AQUI",
-"EMAIL_DA_LARYSSA_AQUI"
+"sarawendling85@gmail.com"
 
 ];
 
@@ -33,11 +30,13 @@ document.getElementById("senha").value;
 
 
 
+// Verifica se o e-mail tem permissão
+
 if(!administradores.includes(email)){
 
 
 document.getElementById("mensagem").innerHTML =
-"Acesso negado";
+"Este e-mail não possui acesso ao painel.";
 
 
 return;
@@ -67,10 +66,11 @@ catch(error){
 
 
 document.getElementById("mensagem").innerHTML =
-"E-mail ou senha incorretos";
+"E-mail ou senha incorretos.";
 
 
 }
+
 
 
 });
