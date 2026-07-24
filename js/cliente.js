@@ -1,182 +1,57 @@
-import { auth, db } from "./firebase.js";
+import { auth } from "../firebase.js";
 
 
 import {
 
-onAuthStateChanged,
-signOut
+onAuthStateChanged
 
 }
-from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+from
+
+"https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
 
-import {
 
-collection,
-query,
-where,
-getDocs
 
-}
-from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+const areaFotos =
+document.getElementById("fotos");
 
 
 
 
 
-onAuthStateChanged(auth,async(user)=>{
+onAuthStateChanged(auth,(usuario)=>{
 
 
-if(!user){
+if(!usuario){
 
-window.location.href="login.html";
+
+window.location.href =
+"cliente-login.html";
+
 
 return;
 
-}
-
-
-
-buscarFotos(user.email);
-
-
-
-});
-
-
-
-
-
-
-
-async function buscarFotos(email){
-
-
-
-const clientes =
-await getDocs(
-
-query(
-
-collection(db,"clientes"),
-
-where(
-"email",
-"==",
-email
-)
-
-)
-
-);
-
-
-
-
-if(clientes.empty){
-
-document.getElementById("galeria").innerHTML =
-"Nenhuma galeria encontrada.";
-
-return;
 
 }
 
 
 
-let clienteID;
+areaFotos.innerHTML = `
 
 
-
-clientes.forEach((doc)=>{
-
-
-clienteID = doc.id;
+<h2>
+Bem-vindo ao seu álbum!
+</h2>
 
 
-document.getElementById("nomeCliente").innerHTML =
-"Bem-vindo à sua galeria 📸";
+<p>
+Suas fotos estarão disponíveis aqui.
+</p>
 
-
-});
-
-
-
-
-
-
-const fotos =
-await getDocs(
-
-query(
-
-collection(db,"fotos"),
-
-where(
-"clienteID",
-"==",
-clienteID
-)
-
-)
-
-);
-
-
-
-
-const galeria =
-document.getElementById("galeria");
-
-
-galeria.innerHTML="";
-
-
-
-fotos.forEach((doc)=>{
-
-
-const foto =
-doc.data();
-
-
-
-galeria.innerHTML += `
-
-<div class="foto">
-
-<img src="${foto.url}">
-
-<br>
-
-<a href="${foto.url}" download>
-Baixar foto
-</a>
-
-</div>
 
 `;
-
-
-});
-
-
-
-}
-
-
-
-
-
-document
-.getElementById("sair")
-.addEventListener("click",()=>{
-
-
-signOut(auth);
-
-
-window.location.href="login.html";
 
 
 });
