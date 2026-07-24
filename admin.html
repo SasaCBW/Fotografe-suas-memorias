@@ -4,11 +4,14 @@
 <head>
 
 <meta charset="UTF-8">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Painel | LS.fotostory</title>
+<title>Painel Administrativo | LS.fotostory</title>
 
-<link rel="stylesheet" href="css/style.css">
+
+<link rel="stylesheet" href="style.css">
+
 
 </head>
 
@@ -16,136 +19,47 @@
 <body>
 
 
-<header>
+<header class="topo">
 
-<h1>📸 Painel LS.fotostory</h1>
+<h1>
+Painel LS.fotostory
+</h1>
 
-<button id="sair">
-Sair
-</button>
+<p>
+Gerenciamento de agendamentos
+</p>
 
 </header>
 
 
 
-
-<main class="painel">
-
+<section class="painel">
 
 
-<section>
-
-<h2>👤 Criar cliente</h2>
-
-
-<input 
-type="text"
-id="nomeCliente"
-placeholder="Nome do cliente">
-
-
-<input 
-type="email"
-id="emailCliente"
-placeholder="E-mail do cliente">
-
-
-<button id="criarCliente">
-Criar cliente
-</button>
-
-
-<p id="clienteStatus"></p>
-
-
-</section>
+<h2>
+Solicitações recebidas
+</h2>
 
 
 
+<div id="listaAgendamentos">
 
-
-<section>
-
-<h2>📷 Enviar fotos</h2>
-
-
-<select id="clienteFotos">
-
-<option>
-Selecione o cliente
-</option>
-
-</select>
-
-
-<input 
-type="file"
-id="fotos"
-multiple>
-
-
-<button id="enviar">
-Enviar fotos
-</button>
-
-
-<p id="status"></p>
-
-
-</section>
-
-
-
-
-
-
-<section>
-
-<h2>📂 Clientes cadastrados</h2>
-
-
-<div id="clientes">
-
-Carregando...
+Carregando agendamentos...
 
 </div>
 
 
-</section>
-
-
-
-
-
-
-<section>
-
-<h2>📅 Agendamentos recebidos</h2>
-
-
-<div id="agendamentos">
-
-Carregando...
-
-</div>
-
 
 </section>
 
 
 
-</main>
 
 
-
-<!-- EmailJS -->
-
-<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-
-
-<!-- Sistema do painel -->
-
-<script type="module" src="js/admin.js"></script>
+<script 
+type="module"
+src="js/admin.js">
+</script>
 
 
 
