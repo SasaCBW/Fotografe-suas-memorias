@@ -1,161 +1,6 @@
-.agendamento{
+.galeria{
 
-max-width:850px;
-margin:60px auto;
-padding:40px;
-
-background:white;
-
-border-radius:20px;
-
-box-shadow:
-0 10px 30px rgba(0,0,0,0.12);
-
-}
-
-
-.titulo{
-
-text-align:center;
-margin-bottom:35px;
-
-}
-
-
-.titulo h2{
-
-font-size:35px;
-color:#222;
-
-}
-
-
-.titulo p{
-
-color:#666;
-font-size:17px;
-
-}
-
-
-
-form{
-
-display:flex;
-flex-direction:column;
-gap:12px;
-
-}
-
-
-
-label{
-
-font-weight:bold;
-color:#333;
-
-}
-
-
-
-input,
-select,
-textarea{
-
-
-padding:15px;
-
-border-radius:10px;
-
-border:1px solid #ddd;
-
-font-size:16px;
-
-}
-
-
-
-textarea{
-
-height:130px;
-resize:none;
-
-}
-
-
-
-button{
-
-margin-top:20px;
-
-padding:16px;
-
-border:none;
-
-border-radius:30px;
-
-background:#111;
-
-color:white;
-
-font-size:18px;
-
-cursor:pointer;
-
-transition:.3s;
-
-}
-
-
-
-button:hover{
-
-transform:scale(1.03);
-
-}
-
-
-
-.whatsapp-box{
-
-margin-top:40px;
-
-text-align:center;
-
-background:#f5f5f5;
-
-padding:30px;
-
-border-radius:20px;
-
-}
-
-
-
-.whatsapp-box a{
-
-display:inline-block;
-
-margin-top:15px;
-
-padding:15px 30px;
-
-background:#25D366;
-
-color:white;
-
-border-radius:30px;
-
-text-decoration:none;
-
-font-size:18px;
-
-font-weight:bold;
-
-}
-.painel{
-
-max-width:1000px;
+max-width:1100px;
 
 margin:50px auto;
 
@@ -164,34 +9,63 @@ padding:30px;
 }
 
 
-.card-agendamento{
+
+#fotos{
+
+display:grid;
+
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+
+gap:25px;
+
+}
+
+
+
+.foto{
 
 background:white;
 
-padding:25px;
-
-margin:20px 0;
+padding:15px;
 
 border-radius:20px;
 
-box-shadow:0 8px 25px rgba(0,0,0,0.1);
+box-shadow:0 5px 20px rgba(0,0,0,0.1);
 
 }
 
 
-.card-agendamento h3{
 
-font-size:24px;
+.foto img{
 
-margin-bottom:15px;
+width:100%;
+
+height:250px;
+
+object-fit:cover;
+
+border-radius:15px;
 
 }
 
 
-.card-agendamento p{
 
-color:#555;
+.foto a{
 
-line-height:1.6;
+display:block;
+
+margin-top:15px;
+
+text-align:center;
+
+padding:12px;
+
+background:#111;
+
+color:white;
+
+border-radius:25px;
+
+text-decoration:none;
 
 }
