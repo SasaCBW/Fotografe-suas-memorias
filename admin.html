@@ -7,11 +7,11 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+
 <title>Painel Administrativo | LS.fotostory</title>
 
 
 <link rel="stylesheet" href="style.css">
-
 
 </head>
 
@@ -25,9 +25,11 @@
 Painel LS.fotostory
 </h1>
 
+
 <p>
-Gerenciamento de agendamentos
+Gerenciamento de clientes e eventos
 </p>
+
 
 </header>
 
@@ -37,14 +39,94 @@ Gerenciamento de agendamentos
 
 
 <h2>
-Solicitações recebidas
+Novo cliente / Evento
 </h2>
 
 
 
-<div id="listaAgendamentos">
+<form id="clienteForm">
 
-Carregando agendamentos...
+
+<input 
+id="nomeCliente"
+placeholder="Nome do cliente"
+required>
+
+
+
+<input 
+id="telefoneCliente"
+placeholder="WhatsApp"
+required>
+
+
+
+<input 
+id="eventoCliente"
+placeholder="Tipo de evento"
+required>
+
+
+
+<input 
+id="dataCliente"
+type="date"
+required>
+
+
+
+<select id="statusCliente">
+
+
+<option>
+Novo orçamento
+</option>
+
+
+<option>
+Confirmado
+</option>
+
+
+<option>
+Evento realizado
+</option>
+
+
+<option>
+Fotos entregues
+</option>
+
+
+</select>
+
+
+
+<button type="submit">
+
+Cadastrar cliente
+
+</button>
+
+
+</form>
+
+
+
+
+<hr>
+
+
+
+<h2>
+Clientes cadastrados
+</h2>
+
+
+
+<div id="listaClientes">
+
+Carregando...
 
 </div>
 
@@ -55,12 +137,11 @@ Carregando agendamentos...
 
 
 
-
 <script 
 type="module"
 src="js/admin.js">
-</script>
 
+</script>
 
 
 </body>
