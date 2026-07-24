@@ -1,122 +1,106 @@
-import { db } from "./firebase.js";
+// Conexão com Firebase
+import { db } from "../firebase.js";
 
 
+// Funções do Firestore
 import {
 
-collection,
-addDoc,
-serverTimestamp
+    collection,
+    addDoc,
+    serverTimestamp
 
-}
-from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+} from 
+"https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 
 
+// Pega o formulário da página
+const formulario = document.getElementById("formAgendamento");
 
 
-document
-.getElementById("enviarAgendamento")
-.addEventListener("click",async()=>{
 
+// Quando o cliente clicar em enviar
+formulario.addEventListener("submit", async (e) => {
 
+    e.preventDefault();
 
-const nome =
-document.getElementById("nome").value;
 
+    // Captura os dados preenchidos
 
-const telefone =
-document.getElementById("telefone").value;
+    const nome = document.getElementById("nome").value;
 
+    const telefone = document.getElementById("telefone").value;
 
-const email =
-document.getElementById("email").value;
+    const evento = document.getElementById("evento").value;
 
+    const data = document.getElementById("data").value;
 
-const evento =
-document.getElementById("evento").value;
+    const local = document.getElementById("local").value;
 
+    const mensagem = document.getElementById("mensagem").value;
 
-const data =
-document.getElementById("data").value;
 
 
-const mensagem =
-document.getElementById("mensagem").value;
+    try {
 
 
+        // Salva no Firestore
 
+        await addDoc(
 
-if(!nome || !telefone || !data){
+            collection(db, "agendamentos"),
 
+            {
 
-document.getElementById("resultado").innerHTML =
-"Preencha nome, WhatsApp e data.";
+                nome: nome,
 
+                telefone: telefone,
 
-return;
+                evento: evento,
 
-}
+                data: data,
 
+                local: local,
 
+                mensagem: mensagem,
 
+                status: "Novo pedido",
 
-try{
+                criadoEm: serverTimestamp()
 
+            }
 
-await addDoc(
+        );
 
-collection(db,"agendamentos"),
 
-{
 
+        alert(
+        "Agendamento enviado com sucesso! Entraremos em contato."
+        );
 
-nome:nome,
 
-telefone:telefone,
 
-email:email,
+        // Limpa o formulário
 
-evento:evento,
+        formulario.reset();
 
-data:data,
 
-mensagem:mensagem,
 
-status:"Pendente",
+    } catch (erro) {
 
-criadoEm:serverTimestamp()
 
+        console.error(
+        "Erro ao enviar agendamento:",
+        erro
+        );
 
-}
 
-);
+        alert(
+        "Ocorreu um erro ao enviar. Tente novamente."
+        );
 
 
-
-
-document.getElementById("resultado").innerHTML =
-
-"Solicitação enviada com sucesso! 📸 Entraremos em contato.";
-
-
-
-
-
-}
-
-
-catch(error){
-
-
-console.log(error);
-
-
-document.getElementById("resultado").innerHTML =
-
-"Erro ao enviar. Tente novamente.";
-
-}
-
+    }
 
 
 });
