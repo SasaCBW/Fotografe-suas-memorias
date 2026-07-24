@@ -6,14 +6,15 @@ import {
 collection,
 addDoc,
 getDocs,
-serverTimestamp
+serverTimestamp,
+updateDoc,
+doc
 
 }
 
 from
 
 "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
-
 
 
 
@@ -27,6 +28,7 @@ document.getElementById("listaClientes");
 
 
 
+// CADASTRAR CLIENTE
 
 formulario.addEventListener("submit", async(e)=>{
 
@@ -38,7 +40,6 @@ e.preventDefault();
 await addDoc(
 
 collection(db,"clientes"),
-
 
 {
 
@@ -68,6 +69,11 @@ status:
 document.getElementById("statusCliente").value,
 
 
+album:
+
+"pendente",
+
+
 criadoEm:
 
 serverTimestamp()
@@ -80,7 +86,7 @@ serverTimestamp()
 
 
 alert(
-"Cliente cadastrado!"
+"Cliente cadastrado com sucesso!"
 );
 
 
@@ -88,9 +94,7 @@ alert(
 formulario.reset();
 
 
-
 carregarClientes();
-
 
 
 });
@@ -99,13 +103,14 @@ carregarClientes();
 
 
 
+// MOSTRAR CLIENTES
 
 
 async function carregarClientes(){
 
 
 
-const dados = await getDocs(
+const clientes = await getDocs(
 
 collection(db,"clientes")
 
@@ -117,10 +122,10 @@ lista.innerHTML="";
 
 
 
-dados.forEach((doc)=>{
+clientes.forEach((cliente)=>{
 
 
-let cliente = doc.data();
+const dados = cliente.data();
 
 
 
@@ -131,29 +136,37 @@ lista.innerHTML += `
 
 
 <h3>
-${cliente.nome}
+${dados.nome}
 </h3>
 
 
 <p>
-📱 ${cliente.telefone}
+📱 ${dados.telefone}
 </p>
 
 
 <p>
-📸 ${cliente.evento}
+📸 ${dados.evento}
 </p>
 
 
 <p>
-📅 ${cliente.data}
+📅 ${dados.data}
 </p>
 
 
 <p>
 Status:
-${cliente.status}
+${dados.status}
 </p>
+
+
+
+<button onclick="prepararAlbum('${cliente.id}')">
+
+Criar álbum
+
+</button>
 
 
 
@@ -163,11 +176,47 @@ ${cliente.status}
 `;
 
 
+
 });
 
 
 
 }
+
+
+
+
+
+// Criar ligação com álbum
+
+
+window.prepararAlbum = async(id)=>{
+
+
+await updateDoc(
+
+doc(db,"clientes",id),
+
+{
+
+album:"criado"
+
+}
+
+);
+
+
+
+alert(
+"Álbum preparado para este cliente!"
+);
+
+
+carregarClientes();
+
+
+}
+
 
 
 
