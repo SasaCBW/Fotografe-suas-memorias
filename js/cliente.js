@@ -1,4 +1,4 @@
-import { auth } from "../firebase.js";
+import { auth, storage } from "../firebase.js";
 
 
 import {
@@ -13,6 +13,21 @@ from
 
 
 
+import {
+
+ref,
+listAll,
+getDownloadURL
+
+}
+
+from
+
+"https://www.gstatic.com/firebasejs/10.12.2/firebase-storage.js";
+
+
+
+
 
 const areaFotos =
 document.getElementById("fotos");
@@ -20,8 +35,7 @@ document.getElementById("fotos");
 
 
 
-
-onAuthStateChanged(auth,(usuario)=>{
+onAuthStateChanged(auth, async(usuario)=>{
 
 
 if(!usuario){
@@ -38,20 +52,106 @@ return;
 
 
 
-areaFotos.innerHTML = `
 
 
-<h2>
-Bem-vindo ao seu álbum!
-</h2>
+const pastaCliente = 
+"clientes/" + usuario.uid;
 
 
-<p>
-Suas fotos estarão disponíveis aqui.
-</p>
+
+const referencia =
+ref(storage,pastaCliente);
+
+
+
+
+
+try{
+
+
+const imagens =
+await listAll(referencia);
+
+
+
+areaFotos.innerHTML = "";
+
+
+
+
+if(imagens.items.length === 0){
+
+
+areaFotos.innerHTML =
+
+"<p>Nenhuma foto disponível ainda.</p>";
+
+
+return;
+
+
+}
+
+
+
+
+
+imagens.items.forEach(async(imagem)=>{
+
+
+const url =
+await getDownloadURL(imagem);
+
+
+
+areaFotos.innerHTML += `
+
+
+<div class="foto">
+
+
+<img src="${url}">
+
+
+
+<a 
+href="${url}"
+download>
+
+
+Baixar foto
+
+</a>
+
+
+
+</div>
 
 
 `;
+
+
+
+});
+
+
+
+}
+
+catch(error){
+
+
+console.error(error);
+
+
+
+areaFotos.innerHTML =
+
+"Erro ao carregar fotos.";
+
+
+}
+
 
 
 });
