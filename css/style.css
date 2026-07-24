@@ -2,13 +2,15 @@
     margin:0;
     padding:0;
     box-sizing:border-box;
-    font-family:'Arial', sans-serif;
+    font-family: "Arial", sans-serif;
 }
 
 
 body{
-    background:#fafafa;
+
+    background:#ffffff;
     color:#222;
+
 }
 
 
@@ -18,6 +20,7 @@ body{
 
     width:100%;
     padding:25px 8%;
+
     display:flex;
     justify-content:space-between;
     align-items:center;
@@ -29,16 +32,15 @@ body{
 
     z-index:100;
 
-    box-shadow:0 3px 15px rgba(0,0,0,0.08);
+    box-shadow:0 4px 15px rgba(0,0,0,.08);
 
 }
 
 
 .logo{
 
-    font-size:28px;
-    font-weight:bold;
-    letter-spacing:1px;
+    font-size:30px;
+    font-weight:700;
 
 }
 
@@ -47,7 +49,7 @@ body{
 nav{
 
     display:flex;
-    gap:25px;
+    gap:30px;
 
 }
 
@@ -61,36 +63,34 @@ nav a{
 }
 
 
-nav a:hover{
-
-    opacity:.6;
-
-}
 
 
+/* CAPA PROFISSIONAL */
 
-
-/* CAPA PRINCIPAL */
 
 .hero{
 
-    min-height:85vh;
+
+    min-height:90vh;
 
     display:flex;
 
     align-items:center;
 
-    padding:80px 8%;
+
+    padding:80px 10%;
+
 
 
     background:
 
     linear-gradient(
-    rgba(0,0,0,.45),
-    rgba(0,0,0,.45)
+    rgba(0,0,0,.55),
+    rgba(0,0,0,.55)
     ),
 
     url("imagens/capa.jpg");
+
 
 
     background-size:cover;
@@ -99,13 +99,14 @@ nav a:hover{
 
     color:white;
 
+
 }
 
 
 
-.hero-text{
+.hero-conteudo{
 
-    max-width:700px;
+    max-width:750px;
 
 }
 
@@ -113,9 +114,13 @@ nav a:hover{
 
 .hero h1{
 
-    font-size:55px;
+
+    font-size:60px;
+
+    line-height:1.1;
 
     margin-bottom:25px;
+
 
 }
 
@@ -123,14 +128,15 @@ nav a:hover{
 
 .hero p{
 
-    font-size:21px;
+
+    font-size:22px;
 
     line-height:1.6;
 
     margin-bottom:35px;
 
-}
 
+}
 
 
 
@@ -140,32 +146,42 @@ nav a:hover{
 
 .botao{
 
+
     display:inline-block;
 
-    padding:15px 35px;
-
-    margin:10px;
+    padding:16px 35px;
 
     background:#111;
 
     color:white;
 
+    border-radius:40px;
+
     text-decoration:none;
 
-    border-radius:30px;
+    margin-right:15px;
 
     transition:.3s;
 
-}
 
+}
 
 
 .botao:hover{
 
-    transform:scale(1.05);
+    transform:translateY(-3px);
 
 }
 
+
+
+.secundario{
+
+    background:white;
+
+    color:#111;
+
+}
 
 
 
@@ -175,7 +191,7 @@ nav a:hover{
 
 section{
 
-    padding:80px 8%;
+    padding:90px 10%;
 
 }
 
@@ -183,11 +199,13 @@ section{
 
 section h2{
 
+
     text-align:center;
 
-    font-size:38px;
+    font-size:40px;
 
-    margin-bottom:40px;
+    margin-bottom:50px;
+
 
 }
 
@@ -200,11 +218,13 @@ section h2{
 
 .cards{
 
+
     display:grid;
 
-    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
 
-    gap:25px;
+    gap:30px;
+
 
 }
 
@@ -212,23 +232,42 @@ section h2{
 
 .card{
 
+
     background:white;
 
     padding:35px;
 
+
     border-radius:25px;
+
+
+    box-shadow:
+
+    0 10px 35px rgba(0,0,0,.08);
+
 
     text-align:center;
 
-    box-shadow:0 10px 30px rgba(0,0,0,.08);
 
 }
-
 
 
 .card h3{
 
+
     margin-bottom:15px;
+
+    font-size:24px;
+
+
+}
+
+
+.card p{
+
+    line-height:1.7;
+
+    color:#555;
 
 }
 
@@ -236,20 +275,22 @@ section h2{
 
 
 
-/* SOBRE */
+/* EMPRESA */
 
 
-.sobre p{
+.empresa p{
 
-    max-width:850px;
+
+    max-width:900px;
 
     margin:auto;
 
     text-align:center;
 
-    font-size:19px;
+    font-size:20px;
 
     line-height:1.8;
+
 
 }
 
@@ -257,20 +298,27 @@ section h2{
 
 
 
-/* DIFERENCIAIS */
+/* PROCESSO */
 
 
-.diferenciais ul{
+.processo{
 
-    max-width:600px;
+    background:#fafafa;
+
+}
+
+
+
+
+
+/* DEPOIMENTOS */
+
+
+#depoimentos .card{
+
+    max-width:700px;
 
     margin:auto;
-
-    list-style:none;
-
-    font-size:20px;
-
-    line-height:2.2;
 
 }
 
@@ -280,28 +328,23 @@ section h2{
 
 /* PORTFÓLIO */
 
+.portfolio{
 
-.galeria-home{
 
-    display:grid;
+    background:#111;
 
-    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    color:white;
 
-    gap:25px;
+    text-align:center;
+
 
 }
 
 
 
-.galeria-home img{
+.portfolio p{
 
-    width:100%;
-
-    height:320px;
-
-    object-fit:cover;
-
-    border-radius:20px;
+    font-size:20px;
 
 }
 
@@ -316,9 +359,11 @@ section h2{
 
     text-align:center;
 
-    background:#f1f1f1;
+    background:#f5f5f5;
+
 
 }
+
 
 
 
@@ -328,21 +373,18 @@ section h2{
 
 .whatsapp-flutuante{
 
+
     position:fixed;
 
     right:25px;
 
     bottom:25px;
 
-    width:60px;
 
-    height:60px;
+    width:65px;
 
-    border-radius:50%;
+    height:65px;
 
-    background:#25D366;
-
-    color:white;
 
     display:flex;
 
@@ -350,11 +392,22 @@ section h2{
 
     justify-content:center;
 
-    font-size:30px;
+
+    border-radius:50%;
+
+
+    background:#25D366;
+
+    color:white;
+
+
+    font-size:32px;
 
     text-decoration:none;
 
+
     box-shadow:0 5px 20px rgba(0,0,0,.3);
+
 
 }
 
@@ -362,10 +415,11 @@ section h2{
 
 
 
-/* FOOTER */
+/* RODAPÉ */
 
 
 footer{
+
 
     background:#111;
 
@@ -373,7 +427,8 @@ footer{
 
     text-align:center;
 
-    padding:25px;
+    padding:30px;
+
 
 }
 
@@ -396,7 +451,6 @@ footer{
 }
 
 
-
 nav{
 
     flex-wrap:wrap;
@@ -404,7 +458,6 @@ nav{
     justify-content:center;
 
 }
-
 
 
 .hero h1{
@@ -418,6 +471,14 @@ nav{
 .hero p{
 
     font-size:18px;
+
+}
+
+
+
+.botao{
+
+    margin-top:10px;
 
 }
 
