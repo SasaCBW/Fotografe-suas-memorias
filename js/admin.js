@@ -4,9 +4,9 @@ import { db } from "../firebase.js";
 import {
 
 collection,
+addDoc,
 getDocs,
-orderBy,
-query
+serverTimestamp
 
 }
 
@@ -17,55 +17,110 @@ from
 
 
 
-const lista = document.getElementById(
-"listaAgendamentos"
-);
+const formulario =
+document.getElementById("clienteForm");
+
+
+const lista =
+document.getElementById("listaClientes");
 
 
 
 
-async function carregarAgendamentos(){
+
+formulario.addEventListener("submit", async(e)=>{
 
 
-try{
-
-
-const consulta = query(
-
-collection(db,"agendamentos"),
-
-orderBy("criadoEm","desc")
-
-);
+e.preventDefault();
 
 
 
-const resultado = await getDocs(consulta);
+await addDoc(
+
+collection(db,"clientes"),
 
 
-
-lista.innerHTML = "";
-
+{
 
 
-if(resultado.empty){
+nome:
+
+document.getElementById("nomeCliente").value,
 
 
-lista.innerHTML = 
-"<p>Nenhum agendamento encontrado.</p>";
+telefone:
 
-return;
+document.getElementById("telefoneCliente").value,
+
+
+evento:
+
+document.getElementById("eventoCliente").value,
+
+
+data:
+
+document.getElementById("dataCliente").value,
+
+
+status:
+
+document.getElementById("statusCliente").value,
+
+
+criadoEm:
+
+serverTimestamp()
 
 
 }
 
+);
 
 
 
-resultado.forEach((documento)=>{
+alert(
+"Cliente cadastrado!"
+);
 
 
-const dados = documento.data();
+
+formulario.reset();
+
+
+
+carregarClientes();
+
+
+
+});
+
+
+
+
+
+
+
+async function carregarClientes(){
+
+
+
+const dados = await getDocs(
+
+collection(db,"clientes")
+
+);
+
+
+
+lista.innerHTML="";
+
+
+
+dados.forEach((doc)=>{
+
+
+let cliente = doc.data();
 
 
 
@@ -76,44 +131,29 @@ lista.innerHTML += `
 
 
 <h3>
-${dados.nome}
+${cliente.nome}
 </h3>
 
 
 <p>
-📱 WhatsApp:
-${dados.telefone}
+📱 ${cliente.telefone}
 </p>
 
 
 <p>
-📸 Evento:
-${dados.evento}
+📸 ${cliente.evento}
 </p>
 
 
 <p>
-📅 Data:
-${dados.data}
+📅 ${cliente.data}
 </p>
 
 
 <p>
-📍 Local:
-${dados.local}
-</p>
-
-
-<p>
-💬 Mensagem:
-${dados.mensagem}
-</p>
-
-
-<span>
 Status:
-${dados.status}
-</span>
+${cliente.status}
+</p>
 
 
 
@@ -123,30 +163,12 @@ ${dados.status}
 `;
 
 
-
 });
 
 
 
-
-}
-
-catch(error){
-
-
-console.error(error);
-
-
-lista.innerHTML =
-"Erro ao carregar agendamentos.";
-
-
 }
 
 
 
-}
-
-
-
-carregarAgendamentos();
+carregarClientes();
