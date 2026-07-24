@@ -153,3 +153,45 @@ font-size:18px;
 font-weight:bold;
 
 }
+.painel{
+
+max-width:1000px;
+
+margin:50px auto;
+
+padding:30px;
+
+}
+
+
+.card-agendamento{
+
+background:white;
+
+padding:25px;
+
+margin:20px 0;
+
+border-radius:20px;
+
+box-shadow:0 8px 25px rgba(0,0,0,0.1);
+
+}
+
+
+.card-agendamento h3{
+
+font-size:24px;
+
+margin-bottom:15px;
+
+}
+
+
+.card-agendamento p{
+
+color:#555;
+
+line-height:1.6;
+
+}
