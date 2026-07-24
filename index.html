@@ -1,45 +1,118 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
+
 <meta charset="UTF-8">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>LS Fotostory | Login</title>
+<title>Área do Cliente | LS.fotostory</title>
 
 <link rel="stylesheet" href="css/style.css">
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
 </head>
 
 <body class="login-page">
 
-<div class="overlay"></div>
+<div class="login-wrapper">
 
-<div class="login-container">
+    <div class="login-left">
 
-<h1>LS Fotostory</h1>
+        <div class="overlay"></div>
 
-<p>Transformando momentos em memórias eternas.</p>
+        <div class="texto">
 
-<form>
+            <h1>LS.fotostory</h1>
 
-<input type="email" placeholder="Seu e-mail">
+            <h2>Área do Cliente</h2>
 
-<input type="password" placeholder="Sua senha">
+            <p>
 
-<button type="submit">
-Entrar
-</button>
+            Acesse sua galeria exclusiva, acompanhe seus registros e baixe suas fotografias com segurança.
 
-</form>
+            </p>
 
-<button class="google-btn">
-Entrar com Google
-</button>
+            <a href="index.html" class="voltar">
 
-<a href="#">Esqueceu sua senha?</a>
+            ← Voltar ao site
+
+            </a>
+
+        </div>
+
+    </div>
+
+
+
+
+
+    <div class="login-right">
+
+        <div class="card-login">
+
+            <img src="imagens/logo.png" class="logo">
+
+            <h2>Entrar</h2>
+
+            <p>
+
+            Faça login para acessar sua área exclusiva.
+
+            </p>
+
+            <form id="loginForm">
+
+                <input
+
+                type="email"
+
+                id="email"
+
+                placeholder="Seu e-mail"
+
+                required>
+
+                <input
+
+                type="password"
+
+                id="senha"
+
+                placeholder="Sua senha"
+
+                required>
+
+                <button type="submit">
+
+                Entrar
+
+                </button>
+
+            </form>
+
+            <button id="googleLogin" class="google-btn">
+
+            Entrar com Google
+
+            </button>
+
+            <a href="#">
+
+            Esqueci minha senha
+
+            </a>
+
+        </div>
+
+    </div>
 
 </div>
 
+<script type="module" src="js/login.js"></script>
+
 </body>
+
 </html>
